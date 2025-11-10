@@ -1,0 +1,242 @@
+"use client";
+
+import { useState } from "react";
+import { getAllPublications, getAllPublicationTags, getAllPublicationYears } from "@/lib/content";
+import { PublicationCard } from "@/components/publication-card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import type { Publication } from "contentlayer/generated";
+
+export default function PublicationsPage() {
+  const allPublications = getAllPublications();
+  const allTags = getAllPublicationTags();
+  const allYears = getAllPublicationYears();
+  
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+
+  // Filter publications
+  const filterPublications = (pubs: Publication[], category?: string) => {
+    let filtered = pubs;
+
+    // Filter by category (using tags for now - you can add a category field later)
+    if (category === "library") {
+      filtered = filtered.filter(p => p.tags?.includes("Library") || p.tags?.includes("External"));
+    } else if (category === "working-papers") {
+      filtered = filtered.filter(p => p.status === "preprint" || p.tags?.includes("Working Paper"));
+    } else if (category === "literature-reviews") {
+      filtered = filtered.filter(p => p.tags?.includes("Literature Review") || p.tags?.includes("Review"));
+    }
+
+    // Filter by search
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (p) =>
+          p.title.toLowerCase().includes(query) ||
+          p.abstract.toLowerCase().includes(query) ||
+          p.authors?.some((a) => a.toLowerCase().includes(query))
+      );
+    }
+
+    // Filter by tag
+    if (selectedTag) {
+      filtered = filtered.filter((p) => p.tags?.includes(selectedTag));
+    }
+
+    // Filter by year
+    if (selectedYear) {
+      filtered = filtered.filter((p) => p.year === selectedYear);
+    }
+
+    return filtered;
+  };
+
+  const allFiltered = filterPublications(allPublications);
+  const libraryFiltered = filterPublications(allPublications, "library");
+  const workingPapersFiltered = filterPublications(allPublications, "working-papers");
+  const literatureReviewsFiltered = filterPublications(allPublications, "literature-reviews");
+
+  return (
+    <main className="min-h-screen py-20">
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <div className="max-w-4xl mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            Publications
+          </h1>
+          <p className="text-xl text-muted-foreground mb-8">
+            Research papers, working drafts, literature reviews, and curated references advancing equitable digital agriculture.
+          </p>
+
+          {/* Search */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+            <Input
+              placeholder="Search publications by title, author, or keyword..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 h-12 text-base"
+            />
+          </div>
+
+          {/* Filters */}
+          <div className="flex flex-wrap gap-4">
+            <div>
+              <p className="text-sm font-medium mb-2 text-muted-foreground">Filter by Year</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge
+                  variant={selectedYear === null ? "default" : "outline"}
+                  className="cursor-pointer hover:bg-primary/10"
+                  onClick={() => setSelectedYear(null)}
+                >
+                  All
+                </Badge>
+                {allYears.map((year) => (
+                  <Badge
+                    key={year}
+                    variant={selectedYear === year ? "default" : "outline"}
+                    className="cursor-pointer hover:bg-primary/10"
+                    onClick={() => setSelectedYear(year)}
+                  >
+                    {year}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium mb-2 text-muted-foreground">Filter by Topic</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge
+                  variant={selectedTag === null ? "default" : "outline"}
+                  className="cursor-pointer hover:bg-primary/10"
+                  onClick={() => setSelectedTag(null)}
+                >
+                  All
+                </Badge>
+                {allTags.slice(0, 8).map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant={selectedTag === tag ? "default" : "outline"}
+                    className="cursor-pointer hover:bg-primary/10"
+                    onClick={() => setSelectedTag(tag)}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <Tabs defaultValue="all" className="w-full">
+          <TabsList className="grid w-full max-w-2xl grid-cols-4 mb-8">
+            <TabsTrigger value="all">All ({allFiltered.length})</TabsTrigger>
+            <TabsTrigger value="library">Library ({libraryFiltered.length})</TabsTrigger>
+            <TabsTrigger value="working">Working Papers ({workingPapersFiltered.length})</TabsTrigger>
+            <TabsTrigger value="reviews">Reviews ({literatureReviewsFiltered.length})</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="all" className="mt-8">
+            {allFiltered.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No publications found matching your filters.</p>
+              </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {allFiltered.map((pub) => (
+                  <PublicationCard key={pub.slug} publication={pub} />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="library" className="mt-8">
+            <div className="mb-6 p-4 bg-muted/30 rounded-lg border">
+              <h3 className="font-semibold mb-2">Research Library</h3>
+              <p className="text-sm text-muted-foreground">
+                Curated collection of external papers and research relevant to our work. These papers are cited for academic purposes only.
+              </p>
+            </div>
+            {libraryFiltered.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No library entries found. Check back soon!</p>
+              </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {libraryFiltered.map((pub) => (
+                  <PublicationCard key={pub.slug} publication={pub} />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="working" className="mt-8">
+            <div className="mb-6 p-4 bg-muted/30 rounded-lg border">
+              <h3 className="font-semibold mb-2">Working Papers</h3>
+              <p className="text-sm text-muted-foreground">
+                Draft papers and preprints currently under development or review. Feedback and collaboration welcome.
+              </p>
+            </div>
+            {workingPapersFiltered.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No working papers found.</p>
+              </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {workingPapersFiltered.map((pub) => (
+                  <PublicationCard key={pub.slug} publication={pub} />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+
+          <TabsContent value="reviews" className="mt-8">
+            <div className="mb-6 p-4 bg-muted/30 rounded-lg border">
+              <h3 className="font-semibold mb-2">Literature Reviews</h3>
+              <p className="text-sm text-muted-foreground">
+                Comprehensive reviews synthesizing research across relevant domains and identifying gaps in current knowledge.
+              </p>
+            </div>
+            {literatureReviewsFiltered.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">No literature reviews found yet.</p>
+              </div>
+            ) : (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {literatureReviewsFiltered.map((pub) => (
+                  <PublicationCard key={pub.slug} publication={pub} />
+                ))}
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
+
+        {/* RAG Research Assistant Placeholder */}
+        <div className="mt-20 max-w-4xl mx-auto">
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-blue-500/10 to-background border-2 border-primary/20">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center">
+                <Search className="w-6 h-6 text-primary" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-2">Research Assistant (Coming Soon)</h3>
+                <p className="text-muted-foreground mb-4">
+                  AI-powered research assistant to help you explore our publications, find relevant papers, and discover connections across our research themes. Powered by RAG technology for accurate, context-aware responses.
+                </p>
+                <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-lg text-sm font-medium text-primary">
+                  Integration: Flowise / n8n
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

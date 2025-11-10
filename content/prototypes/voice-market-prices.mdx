@@ -1,0 +1,128 @@
+---
+name: "Voice Market Prices"
+slug: "voice-market-prices"
+description: "An offline-capable mobile app that allows farmers to query current market prices using voice commands in Kiswahili. Supports price comparisons, historical trends, and personalized alerts."
+stack:
+  - "React Native"
+  - "Vosk (offline ASR)"
+  - "SQLite"
+  - "TensorFlow Lite"
+status: "pilot"
+repoUrl: "https://github.com/ea-research/voice-market-prices"
+demoUrl: "https://demo.earesearch.org/voice-prices"
+screenshots:
+  - "/screenshots/voice-prices-1.png"
+  - "/screenshots/voice-prices-2.png"
+useCases:
+  - "Real-time price queries by voice"
+  - "Price comparison across multiple markets"
+  - "Historical price trends"
+  - "Personalized price alerts"
+---
+
+## Overview
+
+Voice Market Prices is a mobile application that enables smallholder farmers to access current market prices using natural voice commands in Kiswahili. The app works entirely offline, making it accessible in areas with limited connectivity.
+
+## Key Features
+
+### Voice Interface
+- **Natural language queries**: "Nini bei ya kahawa leo?" (What's the price of coffee today?)
+- **Offline ASR**: No internet required for voice recognition
+- **Multi-language support**: Kiswahili, Kikuyu, Luganda
+- **Code-switching aware**: Handles mixed language queries
+
+### Price Information
+- **Real-time prices** from 20+ markets across Kenya
+- **Historical trends** (30-day, 90-day, 1-year views)
+- **Price comparisons** across different markets
+- **Quality grades** and premiums
+
+### Smart Alerts
+- **Personalized notifications** when prices hit target levels
+- **Market insights** based on historical patterns
+- **Best time to sell** recommendations
+
+## Technical Architecture
+
+### Offline ASR
+- **Vosk** speech recognition engine
+- Custom agricultural vocabulary (5000+ terms)
+- Model size: 45MB (optimized for mobile)
+- Latency: Sub-300ms average
+
+### Data Sync
+- Opportunistic syncing when internet available
+- SMS fallback for critical price updates
+- Peer-to-peer data sharing via Bluetooth
+
+### Privacy
+- All voice processing on-device
+- No cloud transmission of audio data
+- Encrypted local storage
+- User control over data sharing
+
+## Field Deployment
+
+### Pilot Program (2024)
+- **800+ farmers** across 5 regions in Kenya
+- **95% daily active usage** among onboarded farmers
+- **4.6/5 average rating** from user feedback
+- **78% reduction** in time to access market info
+
+### Impact Metrics
+- Average query time: **12 seconds** (vs. 8+ minutes for SMS)
+- Information access frequency: **2.3x increase**
+- Farmer confidence in pricing: **+42% reported improvement**
+
+## User Feedback
+
+> "Before, I had to wait hours for price information. Now I can ask while standing in my field." — Coffee farmer, Kiambu County
+
+> "The voice system understands my Kikuyu accent better than my children understand my English!" — Tea farmer, Nyeri County
+
+## Challenges & Learnings
+
+### Technical Challenges
+- **Acoustic variability**: Wind noise and background sounds in field environments
+- **Battery life**: Continuous listening drains battery quickly
+- **Model updates**: Distributing ASR model improvements offline
+
+### Socio-Technical Challenges
+- **Trust building**: Some farmers initially skeptical of automated systems
+- **Gender access**: Need for targeted outreach to women farmers
+- **Cooperative integration**: Balancing individual and collective information access
+
+## Roadmap
+
+### Near-term (Q4 2024)
+- [ ] Expand to 3 additional languages
+- [ ] Add voice-based negotiation tips
+- [ ] Integration with cooperative management systems
+
+### Medium-term (2025)
+- [ ] Blockchain-based price verification
+- [ ] P2P market coordination features
+- [ ] Integration with digital payment systems
+
+## Try It
+
+- **Demo**: [Voice Prices Demo](https://demo.earesearch.org/voice-prices)
+- **Source Code**: [GitHub Repository](https://github.com/ea-research/voice-market-prices)
+- **Documentation**: [Setup Guide](/docs/voice-prices-setup)
+
+## Research Publications
+
+- [Voice-First Interfaces for Agricultural Extension](/publications/voice-asr-extension) — ACM COMPASS 2024
+- [ASR Research Theme](/research/asr-voice-first)
+
+## Collaborations
+
+This prototype was developed in partnership with:
+- Kiambu Coffee Farmers Cooperative
+- Kenya Agricultural and Livestock Research Organisation (KALRO)
+- University of Nairobi, School of Computing
+
+## Contact
+
+Interested in deploying or collaborating? [Get in touch](/contact)

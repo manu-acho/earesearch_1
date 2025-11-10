@@ -1,0 +1,111 @@
+---
+name: "Kiswahili Agricultural Speech Corpus"
+slug: "kiswahili-agriculture-corpus"
+summary: "A curated dataset of 120 hours of Kiswahili speech focused on agricultural terminology, market prices, and extension information. Collected from smallholder farmers across Kenya and Tanzania."
+size: "120 hours (18GB)"
+format: "WAV (16kHz, mono) + JSON transcripts"
+license: "CC BY-SA 4.0"
+version: "1.2.0"
+downloadUrl: "https://zenodo.org/record/example"
+documentationUrl: "/docs/kiswahili-corpus"
+doi: "10.5281/zenodo.example"
+languages:
+  - "Kiswahili"
+  - "Kikuyu"
+domain: "agriculture"
+provenance: "Collected with informed consent from 300+ smallholder coffee and maize farmers, 2022-2024"
+---
+
+## Overview
+
+The Kiswahili Agricultural Speech Corpus is a comprehensive dataset designed to support the development of automatic speech recognition (ASR) systems for agricultural applications in East Africa. It includes diverse speakers, acoustic environments, and agricultural terminology.
+
+## Contents
+
+### Audio Data
+- **120 hours** of transcribed speech
+- **300+ unique speakers** (balanced by gender and age)
+- **Field recordings** with natural acoustic conditions
+- **16kHz sampling rate**, mono channel
+
+### Transcripts
+- Word-level transcriptions with timestamps
+- Agricultural terminology annotations
+- Code-switching markers (Kiswahili/English)
+- Speaker metadata (anonymized)
+
+### Vocabulary Coverage
+
+The corpus includes:
+- Market price queries and responses
+- Weather information
+- Best practice discussions
+- Crop disease identification
+- Fertilizer and input terminology
+- Cooperative management
+
+## Collection Methodology
+
+### Ethical Considerations
+- Informed consent from all participants
+- Compensation for time ($5 USD per hour)
+- Community approval through local cooperatives
+- Data anonymization and privacy protection
+
+### Recording Protocol
+- Recordings conducted in natural farm environments
+- Multiple acoustic conditions (open field, shade, storage facilities)
+- Scripted scenarios + spontaneous conversation
+- Quality control by native speakers
+
+## Use Cases
+
+This dataset enables:
+1. Training ASR models for agricultural domains
+2. Evaluating speech systems in challenging acoustic conditions
+3. Research on code-switching and multilingual ASR
+4. Development of voice-first agricultural applications
+
+## Limitations
+
+- Geographic focus on East Africa (Kenya, Tanzania)
+- Limited coverage of regional dialects
+- Imbalanced representation of crop types (coffee, maize dominant)
+- Potential bias toward cooperative members
+
+## Citation
+
+If you use this dataset, please cite:
+
+```bibtex
+@dataset{kiswahili_ag_corpus_2024,
+  author = {Santos, Maria and Kipkorir, James},
+  title = {Kiswahili Agricultural Speech Corpus},
+  year = {2024},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.example},
+  url = {https://zenodo.org/record/example}
+}
+```
+
+## License
+
+This dataset is released under **CC BY-SA 4.0**. You are free to:
+- Share and adapt the data
+- Use for commercial purposes
+
+Under the following terms:
+- **Attribution** — Credit the original creators
+- **ShareAlike** — Derivative works must use the same license
+
+## Updates
+
+- **v1.2.0** (2024-09-15): Added 20 hours from Tanzania, improved transcription quality
+- **v1.1.0** (2024-03-10): Gender balance improvements, code-switching annotations
+- **v1.0.0** (2023-11-01): Initial release
+
+## Related Resources
+
+- [Voice-First ASR Research](/research/asr-voice-first)
+- [Voice Market Prices Prototype](/prototypes/voice-market-prices)
+- [ASR for Agricultural Extension Paper](/publications/voice-asr-extension)
