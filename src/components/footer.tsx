@@ -133,7 +133,7 @@ export function Footer() {
               <img 
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
                 alt="E.A Research" 
-                className="h-8 w-8 opacity-70 hover:opacity-100 transition-opacity"
+                className="h-8 w-8 opacity-70 hover:opacity-100 transition-opacity mix-blend-multiply dark:mix-blend-screen"
               />
               <span className="text-muted-foreground/50">×</span>
               <img 

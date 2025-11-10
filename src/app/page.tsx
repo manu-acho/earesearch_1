@@ -94,7 +94,7 @@ export default function Home() {
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
                   alt="E.A Research" 
-                  className="h-16 w-16 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
+                  className="h-16 w-16 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200 mix-blend-multiply dark:mix-blend-screen"
                 />
                 <span className="text-3xl text-muted-foreground/50">×</span>
                 <img 
@@ -290,7 +290,7 @@ export default function Home() {
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
                   alt="E.A Research" 
-                  className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity mix-blend-multiply dark:mix-blend-screen"
                 />
                 <p className="text-sm font-medium text-muted-foreground">E.A Research</p>
               </div>

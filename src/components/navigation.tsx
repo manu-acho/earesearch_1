@@ -81,7 +81,7 @@ export function Navigation() {
                 alt="E.A Research"
                 width={32}
                 height={32}
-                className="w-8 h-8"
+                className="w-8 h-8 mix-blend-multiply dark:mix-blend-screen"
               />
               E.A Research
             </Link>
