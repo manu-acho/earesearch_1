@@ -17,7 +17,7 @@ export function Footer() {
       { label: "Contact", href: "/contact" },
     ],
     resources: [
-      { label: "About", href: "/about" },
+      { label: "About", href: "/research" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
     ],
@@ -33,7 +33,7 @@ export function Footer() {
               E.A Research
             </Link>
             <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">
-              Building equitable digital systems for agricultural trade through voice-first technologies, blockchain infrastructure, and field research in East Africa.
+              Building equitable digital systems for agricultural trade through voice-first technologies, blockchain infrastructure, and field research in Sub Saharan Africa.
             </p>
             <div className="flex gap-3">
               <a

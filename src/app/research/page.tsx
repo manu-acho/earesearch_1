@@ -1,11 +1,30 @@
-import { getAllThemes } from "@/lib/content";
-import { ResearchCard } from "@/components/research-card";
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mic, Database, Lock, Scale, GitBranch, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Mic, Database, Lock, Scale, GitBranch, Users, FileText, ArrowRight, Calendar, Target } from "lucide-react";
+
+interface ResearchTheme {
+  id: number;
+  title: string;
+  slug: string;
+  shortDescription: string;
+  status: string;
+  researchType: string | null;
+  researchQuestions: Array<{ id: string; question: string; description?: string }>;
+  milestones: Array<{ id: string; title: string; status: string; dueDate?: string }>;
+  tags: string[];
+  startDate: string | null;
+  estimatedCompletion: string | null;
+  featured: boolean;
+}
 
 export default function ResearchPage() {
-  const themes = getAllThemes();
+  const [themes, setThemes] = useState<ResearchTheme[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const researchAreas = [
     {
@@ -73,6 +92,20 @@ export default function ResearchPage() {
     }
   ];
 
+  useEffect(() => {
+    fetch("/api/research-themes?status=active")
+      .then((res) => res.json())
+      .then((data) => {
+        setThemes(Array.isArray(data) ? data : []);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching research themes:", error);
+        setThemes([]);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <main className="min-h-screen py-20">
       <div className="container mx-auto px-4">
@@ -82,7 +115,7 @@ export default function ResearchPage() {
             Research Themes
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-            Our research addresses critical challenges in digital agriculture through interconnected programs that combine technical innovation, socio-technical design, field practice, and governance frameworks. We work at the intersection of AI/voice technologies, blockchain systems, and agricultural development in East Africa.
+            Our research addresses critical challenges in digital agriculture through interconnected programs that combine technical innovation, socio-technical design, field practice, and governance frameworks. We work at the intersection of AI/voice technologies, blockchain systems, and agricultural development in Sub Saharan Africa.
           </p>
         </div>
 
@@ -207,25 +240,104 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {/* Research Themes from Content */}
-        {themes.length > 0 && (
-          <section className="mb-20">
-            <div className="mb-12 animate-slide-in-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Current Research Themes</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl">
-                Explore our active research programs addressing specific challenges in voice technologies, digital infrastructure, and agricultural systems.
-              </p>
-            </div>
+        {/* Active Research Themes */}
+        <section className="mb-20">
+          <div className="mb-12 animate-slide-in-left">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Active Research Programs</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl">
+              Explore our ongoing research initiatives with transparent progress tracking, research questions, and milestone roadmaps.
+            </p>
+          </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {loading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          ) : themes.length > 0 ? (
+            <div className="grid gap-8 lg:grid-cols-2">
               {themes.map((theme, index) => (
-                <div key={theme.slug} style={{ animationDelay: `${index * 100}ms` }} className="animate-fade-in">
-                  <ResearchCard theme={theme} />
-                </div>
+                <Link key={theme.slug} href={`/research/${theme.slug}`}>
+                  <Card className="p-8 hover:shadow-lg transition-all duration-300 hover:scale-[1.02] cursor-pointer h-full bg-gradient-to-br from-white to-muted/20">
+                    <div className="flex items-start justify-between mb-4">
+                      <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
+                        {theme.researchType || "Research"}
+                      </Badge>
+                      <Badge variant="outline" className={
+                        theme.status === "active" ? "border-green-500 text-green-700" : 
+                        theme.status === "completed" ? "border-blue-500 text-blue-700" : 
+                        "border-orange-500 text-orange-700"
+                      }>
+                        {theme.status}
+                      </Badge>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {theme.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground mb-6 line-clamp-3">
+                      {theme.shortDescription}
+                    </p>
+
+                    <div className="space-y-4">
+                      {/* Research Questions Count */}
+                      <div className="flex items-center gap-2 text-sm">
+                        <FileText className="w-4 h-4 text-primary" />
+                        <span className="text-muted-foreground">
+                          {theme.researchQuestions.length} Research Questions
+                        </span>
+                      </div>
+
+                      {/* Milestone Progress */}
+                      {theme.milestones.length > 0 && (
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2 text-sm">
+                            <Target className="w-4 h-4 text-primary" />
+                            <span className="text-muted-foreground">
+                              {theme.milestones.filter((m: any) => m.status === "completed").length} / {theme.milestones.length} Milestones Completed
+                            </span>
+                          </div>
+                          <div className="w-full bg-muted rounded-full h-2">
+                            <div 
+                              className="bg-primary h-2 rounded-full transition-all duration-500" 
+                              style={{ 
+                                width: `${(theme.milestones.filter((m: any) => m.status === "completed").length / theme.milestones.length) * 100}%` 
+                              }}
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Timeline */}
+                      {(theme.startDate || theme.estimatedCompletion) && (
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Calendar className="w-4 h-4" />
+                          <span>
+                            {theme.startDate && new Date(theme.startDate).getFullYear()}
+                            {theme.estimatedCompletion && ` - ${new Date(theme.estimatedCompletion).getFullYear()}`}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-6 flex items-center gap-2 text-primary font-semibold group">
+                      <span>View Research Details</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Card>
+                </Link>
               ))}
             </div>
-          </section>
-        )}
+          ) : (
+            <Card className="p-12 text-center bg-muted/30">
+              <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No Active Research Themes</h3>
+              <p className="text-muted-foreground mb-6">
+                Research themes will appear here once they are added to the database.
+              </p>
+            </Card>
+          )}
+        </section>
 
         {/* Open Science Commitment */}
         <section className="max-w-4xl animate-fade-in">

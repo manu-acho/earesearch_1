@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "equitable technology",
     "smallholder farmers",
     "agricultural technology",
-    "East Africa research"
+    "Sub Saharan Africa research"
   ],
   authors: [{ name: "E.A Research Team" }],
   creator: "E.A Research",

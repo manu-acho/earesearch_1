@@ -45,7 +45,7 @@ export default function Home() {
     },
     {
       title: "Collaborative Approach",
-      description: "Partnering with researchers, farmers, and organizations to advance digital agriculture in East Africa.",
+      description: "Partnering with researchers, farmers, and organizations to advance digital agriculture in Sub Saharan Africa.",
       link: "/partners"
     }
   ];

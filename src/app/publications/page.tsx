@@ -548,8 +548,8 @@ export default function PublicationsPage() {
                   </div>
                   <h2 className="text-3xl font-bold mb-4">AI Research Assistant</h2>
                   <p className="text-lg text-muted-foreground mb-6">
-                    Ask questions about your entire research corpus using natural language. 
-                    The assistant will search across all publications, reviews, and artifacts to provide relevant insights.
+                    Ask questions about our entire research corpus using natural language. 
+                    Our assistant will search across all publications, reviews, and artifacts to provide relevant insights.
                   </p>
                   <div className="bg-background/50 rounded-lg p-6 mb-6">
                     <p className="text-sm text-muted-foreground mb-4">
@@ -562,7 +562,7 @@ export default function PublicationsPage() {
                     </div>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    This feature will be enabled once you have sufficient content in your publication database
+                    This feature will be enabled once we have sufficient content in our publication database
                   </p>
                 </div>
               </Card>

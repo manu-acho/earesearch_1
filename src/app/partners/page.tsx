@@ -262,7 +262,7 @@ export default function PartnersPage() {
               <h2 className="text-3xl font-bold mb-4">Collaboration with E.A Research</h2>
               <p className="text-lg text-muted-foreground mb-8">
                 E.A Research and Addis AI are working together to advance equitable digital agriculture through voice-first technologies, 
-                combining cutting-edge research with practical AI solutions to empower smallholder farmers across East Africa.
+                combining cutting-edge research with practical AI solutions to empower smallholder farmers across Sub Saharan Africa.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Badge variant="outline" className="text-base py-2 px-4">

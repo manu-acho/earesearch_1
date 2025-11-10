@@ -134,6 +134,33 @@ export const datasets = pgTable("datasets", {
   lastUpdated: timestamp("last_updated").defaultNow(),
 });
 
+// Research themes - active research programs with questions, findings, and milestones
+export const researchThemes = pgTable("research_themes", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: varchar("slug", { length: 160 }).notNull().unique(),
+  shortDescription: text("short_description").notNull(), // For listing pages
+  fullDescription: text("full_description"), // Detailed context and background
+  status: varchar("status", { length: 30 }).notNull(), // "active", "completed", "on-hold"
+  researchType: varchar("research_type", { length: 50 }), // "systematic-review", "empirical-study", "field-research", "theoretical"
+  researchQuestions: text("research_questions").notNull(), // JSON array of RQ objects: [{id, question, description}]
+  keyFindings: text("key_findings"), // JSON array of finding objects: [{rqId, findings: [...]}]
+  milestones: text("milestones").notNull(), // JSON array: [{id, title, description, dueDate, status, completedDate}]
+  methodology: text("methodology"), // Research approach description
+  geographicFocus: text("geographic_focus"), // JSON array: ["Sub Saharan Africa", "Kenya"]
+  tags: text("tags"), // JSON array
+  relatedPublications: text("related_publications"), // JSON array of IDs or titles
+  references: text("references"), // JSON array of citation objects or formatted string
+  teamMembers: text("team_members"), // JSON array: [{name, role}]
+  fundingStatus: varchar("funding_status", { length: 30 }), // "funded", "seeking-funding", "self-funded"
+  fundingSource: text("funding_source"),
+  startDate: timestamp("start_date"),
+  estimatedCompletion: timestamp("estimated_completion"),
+  featured: boolean("featured").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  lastUpdated: timestamp("last_updated").defaultNow(),
+});
+
 export const contacts = pgTable("contacts", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 120 }).notNull(),
