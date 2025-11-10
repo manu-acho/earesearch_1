@@ -13,8 +13,11 @@ export default function PartnersPage() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
             Our Partners
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-4">
             Collaborating with innovative organizations to bridge Africa's digital divide through culture-aware AI
+          </p>
+          <p className="text-lg text-muted-foreground">
+            Featuring our strategic technology partner: <span className="font-semibold text-primary">Addis AI</span>
           </p>
         </div>
 
@@ -28,7 +31,7 @@ export default function PartnersPage() {
                   <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                     Strategic Partner
                   </Badge>
-                  <h2 className="text-4xl font-bold mb-4 glossy-blue glossy-blue-hover bg-clip-text text-transparent">
+                  <h2 className="text-4xl font-bold mb-4 text-primary">
                     Addis AI
                   </h2>
                   <p className="text-xl text-muted-foreground mb-6">
@@ -59,7 +62,7 @@ export default function PartnersPage() {
 
                   <div>
                     <Button variant="default" className="glossy-blue glossy-blue-hover" asChild>
-                      <a href="https://addisai.com" target="_blank" rel="noopener noreferrer">
+                      <a href="https://addisassistant.com/en/" target="_blank" rel="noopener noreferrer">
                         Visit Addis AI
                         <ExternalLink className="w-4 h-4 ml-2" />
                       </a>

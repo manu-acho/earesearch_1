@@ -56,26 +56,26 @@ export default function Home() {
       <section className="relative overflow-hidden border-b">
         {/* Animated background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30">
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-            <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-            <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+            <div className="absolute top-40 right-10 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+            <div className="absolute bottom-20 left-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
           </div>
         </div>
 
         <div className="container relative mx-auto px-4 py-24 md:py-32 lg:py-40">
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full text-sm font-medium text-primary shadow-sm">
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full text-sm font-medium text-primary shadow-sm animate-slide-in-down">
               <Sparkles className="w-4 h-4" />
               Research • Innovation • Impact
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 animate-fade-in">
-              Building equitable digital systems for agricultural trade
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl leading-relaxed animate-fade-in" style={{ animationDelay: "100ms" }}>
-              We research, develop, and implement socio-technical systems that combine voice-first interfaces, data governance, and field practice — empowering farmers as agents in digital markets.
+                      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-in-left animation-delay-200">
+            Building Farmer Agency in Digital Markets
+          </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl leading-relaxed animate-slide-in-left" style={{ animationDelay: "200ms" }}>
+              We research, develop, and implement socio-technical systems that combine voice-first interfaces, data governance, and field practice, empowering farmers as agents in digital markets.
             </p>
-            <div className="flex flex-wrap gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <div className="flex flex-wrap gap-4 animate-slide-in-up" style={{ animationDelay: "400ms" }}>
               <Button size="lg" className="glossy-blue glossy-blue-hover shadow-lg" asChild>
                 <Link href="/research">
                   Explore Research
@@ -95,11 +95,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-scale-in">
                 Our Research Focus
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We work across four interconnected areas to advance equitable digital agriculture in East Africa
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "100ms" }}>
+                We work across four interconnected areas to advance equitable digital agriculture.
               </p>
             </div>
 
@@ -109,8 +109,8 @@ export default function Home() {
                 return (
                   <Card 
                     key={area.title} 
-                    className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group animate-slide-in-up"
+                    style={{ animationDelay: `${200 + index * 100}ms` }}
                   >
                     <div className={`w-12 h-12 rounded-lg ${area.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                       <Icon className="w-6 h-6" />
@@ -126,7 +126,7 @@ export default function Home() {
               })}
             </div>
 
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-center animate-fade-in" style={{ animationDelay: "600ms" }}>
               <Button variant="outline" size="lg" asChild>
                 <Link href="/research">
                   View Detailed Research Themes
@@ -143,10 +143,10 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-scale-in">
                 What We Do
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "100ms" }}>
                 Our approach combines rigorous research, practical prototyping, and community collaboration
               </p>
             </div>
@@ -155,8 +155,8 @@ export default function Home() {
               {features.map((feature, index) => (
                 <Card 
                   key={feature.title}
-                  className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group animate-slide-in-up"
+                  style={{ animationDelay: `${200 + index * 150}ms` }}
                 >
                   <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                     {feature.title}
@@ -183,7 +183,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="grid gap-8 md:grid-cols-2">
               {/* Publications */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-blue-50/50 to-white">
+              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-blue-50/50 to-white animate-slide-in-left">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <BookOpen className="w-6 h-6" />
@@ -202,7 +202,7 @@ export default function Home() {
               </Card>
 
               {/* Datasets */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-green-50/50 to-white">
+              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-green-50/50 to-white animate-slide-in-right" style={{ animationDelay: "100ms" }}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Database className="w-6 h-6" />
@@ -221,7 +221,7 @@ export default function Home() {
               </Card>
 
               {/* Prototypes */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-purple-50/50 to-white">
+              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-purple-50/50 to-white animate-slide-in-left" style={{ animationDelay: "200ms" }}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Code className="w-6 h-6" />
@@ -240,7 +240,7 @@ export default function Home() {
               </Card>
 
               {/* Partners */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-orange-50/50 to-white">
+              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-orange-50/50 to-white animate-slide-in-right" style={{ animationDelay: "300ms" }}>
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Users className="w-6 h-6" />

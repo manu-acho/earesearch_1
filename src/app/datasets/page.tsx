@@ -30,11 +30,12 @@ export default function DatasetsPage() {
     fetch("/api/datasets")
       .then((res) => res.json())
       .then((data) => {
-        setDatasets(data);
+        setDatasets(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching datasets:", error);
+        setDatasets([]);
         setLoading(false);
       });
   }, []);
