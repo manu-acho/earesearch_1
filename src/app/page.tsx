@@ -64,18 +64,18 @@ export default function Home() {
         </div>
 
         <div className="container relative mx-auto px-4 py-24 md:py-32 lg:py-40">
-          <div className="max-w-4xl">
+          <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full text-sm font-medium text-primary shadow-sm animate-slide-in-down">
               <Sparkles className="w-4 h-4" />
               Research • Innovation • Impact
             </div>
-                      <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-in-left animation-delay-200">
-            Building Farmer Agency in Digital Markets
-          </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl leading-relaxed animate-slide-in-left" style={{ animationDelay: "200ms" }}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-in-left animation-delay-200">
+              Building Farmer Agency in Digital Markets
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed animate-slide-in-left" style={{ animationDelay: "200ms" }}>
               We research, develop, and implement socio-technical systems that combine voice-first interfaces, data governance, and field practice, empowering farmers as agents in digital markets.
             </p>
-            <div className="flex flex-wrap gap-4 animate-slide-in-up" style={{ animationDelay: "400ms" }}>
+            <div className="flex flex-wrap gap-4 justify-center animate-slide-in-up" style={{ animationDelay: "400ms" }}>
               <Button size="lg" className="glossy-blue glossy-blue-hover shadow-lg" asChild>
                 <Link href="/research">
                   Explore Research
