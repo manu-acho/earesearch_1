@@ -86,6 +86,24 @@ export default function Home() {
                 <Link href="/contact">Get Involved</Link>
               </Button>
             </div>
+
+            {/* Partnership Badge */}
+            <div className="mt-12 pt-8 border-t border-muted/30 animate-fade-in" style={{ animationDelay: "600ms" }}>
+              <p className="text-sm text-muted-foreground mb-4">Research Collaboration</p>
+              <div className="flex items-center justify-center gap-8">
+                <img 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+                  alt="E.A Research" 
+                  className="h-16 w-16 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
+                />
+                <span className="text-3xl text-muted-foreground/50">×</span>
+                <img 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                  alt="Addis AI" 
+                  className="h-16 w-16 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -258,6 +276,37 @@ export default function Home() {
                 </Button>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8">Research Collaboration</h2>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8">
+              <div className="text-center">
+                <img 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+                  alt="E.A Research" 
+                  className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
+                />
+                <p className="text-sm font-medium text-muted-foreground">E.A Research</p>
+              </div>
+              <div className="text-4xl text-muted-foreground">+</div>
+              <div className="text-center">
+                <img 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                  alt="Addis AI" 
+                  className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
+                />
+                <p className="text-sm font-medium text-muted-foreground">Addis AI</p>
+              </div>
+            </div>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Joint research initiative advancing voice-first AI, low-resource language technologies, and digital agricultural systems for Sub-Saharan Africa
+            </p>
           </div>
         </div>
       </section>

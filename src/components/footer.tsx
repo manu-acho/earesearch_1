@@ -125,6 +125,26 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Partnership Logos */}
+        <div className="py-6 border-t border-border/40">
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-xs text-muted-foreground uppercase tracking-wide">Research Collaboration</p>
+            <div className="flex items-center gap-6">
+              <img 
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+                alt="E.A Research" 
+                className="h-8 w-8 opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <span className="text-muted-foreground/50">×</span>
+              <img 
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                alt="Addis AI" 
+                className="h-8 w-8 opacity-70 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border/40">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -144,7 +164,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors flex items-center gap-1"
               >
-                Partner: Addis AI
+                Visit Addis AI
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>

@@ -389,8 +389,16 @@ export default function ResearchThemeDetailPage() {
             <Card className="p-8">
               <div className="grid gap-6 md:grid-cols-2">
                 {theme.teamMembers.map((member, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <Users className="w-5 h-5 text-primary mt-1" />
+                  <div key={idx} className="flex items-start gap-4">
+                    {member.role.includes("Addis AI") ? (
+                      <img 
+                        src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4"
+                        alt="Addis AI"
+                        className="w-8 h-8 rounded-full object-cover mt-0.5"
+                      />
+                    ) : (
+                      <Users className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                    )}
                     <div>
                       <div className="font-semibold">{member.name}</div>
                       <div className="text-sm text-muted-foreground">{member.role}</div>

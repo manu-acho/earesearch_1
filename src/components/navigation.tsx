@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { Button } from "./ui/button";
 import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell } from "lucide-react";
 
@@ -73,8 +74,15 @@ export function Navigation() {
             {/* Logo */}
             <Link 
               href="/" 
-              className="font-bold text-xl text-primary hover:scale-105 transition-transform duration-200 z-50"
+              className="flex items-center gap-2 font-bold text-xl text-primary hover:scale-105 transition-transform duration-200 z-50"
             >
+              <Image
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm"
+                alt="E.A Research"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
               E.A Research
             </Link>
 
