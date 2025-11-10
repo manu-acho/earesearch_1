@@ -3,19 +3,37 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Download, FileText, ExternalLink } from "lucide-react";
-import type { Dataset } from "contentlayer/generated";
+
+type DatasetType = {
+  name: string;
+  slug: string;
+  summary: string;
+  size?: string | null;
+  format?: string | null;
+  license: string;
+  version?: string | null;
+  downloadUrl?: string | null;
+  documentationUrl?: string | null;
+  doi?: string | null;
+  languages?: string[];
+  domains?: string[];
+  tags?: string[];
+  featured?: boolean;
+};
 
 interface DatasetCardProps {
-  dataset: Dataset;
+  dataset: DatasetType;
 }
 
 export function DatasetCard({ dataset }: DatasetCardProps) {
+  const url = `/datasets/${dataset.slug}`;
+  
   return (
-    <Card className="h-full flex flex-col">
+    <Card className="h-full flex flex-col hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <CardTitle className="text-xl">
-            <Link href={dataset.url} className="hover:text-primary transition-colors">
+            <Link href={url} className="hover:text-primary transition-colors">
               {dataset.name}
             </Link>
           </CardTitle>
@@ -39,11 +57,11 @@ export function DatasetCard({ dataset }: DatasetCardProps) {
               {lang}
             </Badge>
           ))}
-          {dataset.domain && (
-            <Badge variant="outline" className="text-xs">
-              {dataset.domain}
+          {dataset.domains?.map((domain) => (
+            <Badge key={domain} variant="outline" className="text-xs">
+              {domain}
             </Badge>
-          )}
+          ))}
         </div>
       </CardContent>
       <CardFooter className="flex flex-wrap gap-2">

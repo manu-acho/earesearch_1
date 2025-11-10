@@ -109,6 +109,31 @@ export const prototypes = pgTable("prototypes", {
   lastUpdated: timestamp("last_updated").defaultNow(),
 });
 
+// Datasets - research data and corpora
+export const datasets = pgTable("datasets", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  slug: varchar("slug", { length: 160 }).notNull().unique(),
+  summary: text("summary").notNull(),
+  description: text("description"), // Full markdown description
+  size: varchar("size", { length: 50 }), // e.g., "2.5 GB", "10,000 samples"
+  format: varchar("format", { length: 100 }), // e.g., "JSON", "CSV", "Audio (WAV)"
+  license: varchar("license", { length: 100 }).notNull(), // e.g., "CC BY 4.0", "MIT"
+  version: varchar("version", { length: 20 }).default("1.0.0"),
+  downloadUrl: text("download_url"),
+  documentationUrl: text("documentation_url"),
+  doi: varchar("doi", { length: 100 }),
+  languages: text("languages"), // JSON array for multilingual datasets
+  domains: text("domains"), // JSON array: ["agriculture", "voice"]
+  tags: text("tags"), // JSON array
+  stats: text("stats"), // JSON object: {"samples": 10000, "hours": 50}
+  citation: text("citation"),
+  relatedPaper: integer("related_paper"), // FK to working_papers or external_papers
+  featured: boolean("featured").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  lastUpdated: timestamp("last_updated").defaultNow(),
+});
+
 export const contacts = pgTable("contacts", {
   id: serial("id").primaryKey(),
   name: varchar("name", { length: 120 }).notNull(),
