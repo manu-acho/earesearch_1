@@ -359,9 +359,25 @@ export default function ResearchThemeDetailPage() {
           <section className="mb-12">
             <h2 className="text-3xl font-bold mb-6">Methodology</h2>
             <Card className="p-8">
-              <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                {theme.methodology}
-              </p>
+              <div className="prose prose-lg max-w-none">
+                {theme.methodology.split('\n\n').map((section, idx) => {
+                  // Handle bold headers like **Search Strategy:**
+                  if (section.trim().startsWith('**')) {
+                    const parts = section.split('**');
+                    return (
+                      <div key={idx} className="mb-6">
+                        <h3 className="font-bold text-lg mb-2">{parts[1]}</h3>
+                        <p className="text-muted-foreground leading-relaxed">{parts[2]?.trim()}</p>
+                      </div>
+                    );
+                  }
+                  return (
+                    <p key={idx} className="text-muted-foreground leading-relaxed mb-4">
+                      {section}
+                    </p>
+                  );
+                })}
+              </div>
             </Card>
           </section>
         )}
