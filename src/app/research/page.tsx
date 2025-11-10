@@ -240,13 +240,21 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {/* Active Research Themes */}
+        {/* Active Research Projects */}
         <section className="mb-20">
-          <div className="mb-12 animate-slide-in-left">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Active Research Programs</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl">
-              Explore our ongoing research initiatives with transparent progress tracking, research questions, and milestone roadmaps.
-            </p>
+          <div className="mb-12 animate-slide-in-left flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Active Research Projects</h2>
+              <p className="text-lg text-muted-foreground max-w-3xl">
+                Explore our ongoing research initiatives with transparent progress tracking, research questions, and milestone roadmaps.
+              </p>
+            </div>
+            <Link href="/admin/research-themes/new">
+              <Button className="flex-shrink-0">
+                <FileText className="w-4 h-4 mr-2" />
+                Add Research Project
+              </Button>
+            </Link>
           </div>
 
           {loading ? (
@@ -331,9 +339,9 @@ export default function ResearchPage() {
           ) : (
             <Card className="p-12 text-center bg-muted/30">
               <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">No Active Research Themes</h3>
+              <h3 className="text-xl font-semibold mb-2">No Active Research Projects</h3>
               <p className="text-muted-foreground mb-6">
-                Research themes will appear here once they are added to the database.
+                Research projects will appear here once they are added to the database.
               </p>
             </Card>
           )}
@@ -345,7 +353,7 @@ export default function ResearchPage() {
             <Database className="w-12 h-12 text-primary mb-6" />
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Open Science & Digital Public Goods</h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              We are committed to open science principles. All language models, datasets, and tools developed through our research are released as digital public goods, enabling Ethiopian-led innovation and building sovereign AI capacity.
+              We are committed to open science principles. All language models, datasets, and tools developed through our research are released as digital public goods, enabling Community-led innovation and building sovereign AI capacity.
             </p>
             <div className="flex flex-wrap gap-3">
               <Badge className="bg-primary/10 text-primary hover:bg-primary/20">Open Source Models</Badge>

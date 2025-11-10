@@ -1,28 +1,85 @@
-import { notFound } from "next/navigation";
-import { getAllUpdates, getUpdateBySlug } from "@/lib/content";
-import { getMDXComponent } from "next-contentlayer2/hooks";
-import { mdxComponents } from "@/components/mdx-components";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { Calendar, User, ArrowLeft } from "lucide-react";
+import { Calendar, User, ArrowLeft, MapPin, FileText } from "lucide-react";
 
-export async function generateStaticParams() {
-  const updates = getAllUpdates();
-  return updates.map((update) => ({
-    slug: update.slug,
-  }));
+interface Update {
+  id: number;
+  title: string;
+  slug: string;
+  summary: string;
+  content: string;
+  author: string;
+  date: string;
+  location: string | null;
+  updateType: string;
+  tags: string[];
+  images: string[];
+  featured: boolean;
+  published: boolean;
+  createdAt: string;
 }
 
-export default async function UpdatePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const update = getUpdateBySlug(slug);
+export default function UpdatePage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  
+  const [update, setUpdate] = useState<Update | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!update) {
-    notFound();
+  useEffect(() => {
+    fetch(`/api/updates`)
+      .then((res) => res.json())
+      .then((data) => {
+        const updates = Array.isArray(data) ? data : [];
+        const foundUpdate = updates.find((u: Update) => u.slug === slug);
+        setUpdate(foundUpdate || null);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching update:", error);
+        setLoading(false);
+      });
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
-  const MDXContent = getMDXComponent(update.body.code);
+  if (!update) {
+    return (
+      <main className="min-h-screen py-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="p-12 text-center">
+            <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <h1 className="text-2xl font-bold mb-2">Update Not Found</h1>
+            <p className="text-muted-foreground mb-6">
+              The update you're looking for doesn't exist.
+            </p>
+            <Link href="/updates">
+              <Button>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Updates
+              </Button>
+            </Link>
+          </Card>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen py-20">
@@ -80,8 +137,9 @@ export default async function UpdatePage({ params }: { params: Promise<{ slug: s
           </div>
 
           {/* Full Content */}
+                    {/* Full Content */}
           <article className="prose prose-lg max-w-none">
-            <MDXContent components={mdxComponents} />
+            <div dangerouslySetInnerHTML={{ __html: update.content }} />
           </article>
         </div>
       </div>

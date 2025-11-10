@@ -194,7 +194,7 @@ export default function NewResearchThemePage() {
       if (response.ok) {
         router.push("/research");
       } else {
-        alert("Failed to create research theme");
+        alert("Failed to create research project");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -212,7 +212,7 @@ export default function NewResearchThemePage() {
           <span>Back to Research</span>
         </Link>
 
-        <h1 className="text-4xl font-bold mb-8">Add New Research Theme</h1>
+        <h1 className="text-4xl font-bold mb-8">Add New Research Project</h1>
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Info */}
@@ -611,7 +611,7 @@ export default function NewResearchThemePage() {
             </Link>
             <Button type="submit" disabled={loading}>
               <Save className="w-4 h-4 mr-2" />
-              {loading ? "Saving..." : "Create Research Theme"}
+              {loading ? "Saving..." : "Create Research Project"}
             </Button>
           </div>
         </form>

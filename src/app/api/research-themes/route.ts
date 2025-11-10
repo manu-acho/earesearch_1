@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
-import { researchThemes } from "@/db/schema";
+import { researchProjects } from "@/db/schema";
 import { desc, eq, like, or } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
@@ -10,56 +10,56 @@ export async function GET(request: NextRequest) {
     const featured = searchParams.get("featured");
     const search = searchParams.get("search");
 
-    type ResearchThemeRow = typeof researchThemes.$inferSelect;
-    let themes: ResearchThemeRow[] = await db
+    type ResearchProjectRow = typeof researchProjects.$inferSelect;
+    let projects: ResearchProjectRow[] = await db
       .select()
-      .from(researchThemes)
-      .orderBy(desc(researchThemes.lastUpdated));
+      .from(researchProjects)
+      .orderBy(desc(researchProjects.lastUpdated));
 
     // Filter by status
     if (status) {
-      themes = themes.filter((theme) => theme.status === status);
+      projects = projects.filter((project) => project.status === status);
     }
 
     // Filter by featured
     if (featured === "true") {
-      themes = themes.filter((theme) => theme.featured === true);
+      projects = projects.filter((project) => project.featured === true);
     }
 
     // Search in title and description
     if (search) {
       const searchLower = search.toLowerCase();
-      themes = themes.filter(
-        (theme) =>
-          theme.title.toLowerCase().includes(searchLower) ||
-          theme.shortDescription.toLowerCase().includes(searchLower) ||
-          (theme.tags && theme.tags.toLowerCase().includes(searchLower))
+      projects = projects.filter(
+        (project) =>
+          project.title.toLowerCase().includes(searchLower) ||
+          project.shortDescription.toLowerCase().includes(searchLower) ||
+          (project.tags && project.tags.toLowerCase().includes(searchLower))
       );
     }
 
     // Parse JSON fields for client
-    const themesWithParsedJson = themes.map((theme) => ({
-      ...theme,
-      researchQuestions: theme.researchQuestions
-        ? JSON.parse(theme.researchQuestions)
+    const projectsWithParsedJson = projects.map((project) => ({
+      ...project,
+      researchQuestions: project.researchQuestions
+        ? JSON.parse(project.researchQuestions)
         : [],
-      keyFindings: theme.keyFindings ? JSON.parse(theme.keyFindings) : [],
-      milestones: theme.milestones ? JSON.parse(theme.milestones) : [],
-      geographicFocus: theme.geographicFocus
-        ? JSON.parse(theme.geographicFocus)
+      keyFindings: project.keyFindings ? JSON.parse(project.keyFindings) : [],
+      milestones: project.milestones ? JSON.parse(project.milestones) : [],
+      geographicFocus: project.geographicFocus
+        ? JSON.parse(project.geographicFocus)
         : [],
-      tags: theme.tags ? JSON.parse(theme.tags) : [],
-      relatedPublications: theme.relatedPublications
-        ? JSON.parse(theme.relatedPublications)
+      tags: project.tags ? JSON.parse(project.tags) : [],
+      relatedPublications: project.relatedPublications
+        ? JSON.parse(project.relatedPublications)
         : [],
-      teamMembers: theme.teamMembers ? JSON.parse(theme.teamMembers) : [],
+      teamMembers: project.teamMembers ? JSON.parse(project.teamMembers) : [],
     }));
 
-    return NextResponse.json(themesWithParsedJson);
+    return NextResponse.json(projectsWithParsedJson);
   } catch (error) {
-    console.error("Error fetching research themes:", error);
+    console.error("Error fetching research projects:", error);
     return NextResponse.json(
-      { error: "Failed to fetch research themes" },
+      { error: "Failed to fetch research projects" },
       { status: 500 }
     );
   }
@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
         .replace(/(^-|-$)/g, "");
 
     // Stringify JSON fields
-    const themeData = {
+    const projectData = {
       title: body.title,
       slug: slug,
       shortDescription: body.shortDescription,
@@ -121,13 +121,13 @@ export async function POST(request: NextRequest) {
       featured: body.featured || false,
     };
 
-    const result = await db.insert(researchThemes).values(themeData).returning();
+    const result = await db.insert(researchProjects).values(projectData).returning();
 
     return NextResponse.json(result[0], { status: 201 });
   } catch (error) {
-    console.error("Error creating research theme:", error);
+    console.error("Error creating research project:", error);
     return NextResponse.json(
-      { error: "Failed to create research theme" },
+      { error: "Failed to create research project" },
       { status: 500 }
     );
   }

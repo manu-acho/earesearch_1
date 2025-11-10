@@ -134,8 +134,8 @@ export const datasets = pgTable("datasets", {
   lastUpdated: timestamp("last_updated").defaultNow(),
 });
 
-// Research themes - active research programs with questions, findings, and milestones
-export const researchThemes = pgTable("research_themes", {
+// Research projects - active research programs with questions, findings, and milestones
+export const researchProjects = pgTable("research_projects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   slug: varchar("slug", { length: 160 }).notNull().unique(),
@@ -157,6 +157,27 @@ export const researchThemes = pgTable("research_themes", {
   startDate: timestamp("start_date"),
   estimatedCompletion: timestamp("estimated_completion"),
   featured: boolean("featured").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  lastUpdated: timestamp("last_updated").defaultNow(),
+});
+
+// Updates - field notes, research updates, and news
+export const updates = pgTable("updates", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: varchar("slug", { length: 160 }).notNull().unique(),
+  summary: text("summary").notNull(),
+  content: text("content").notNull(), // Full markdown content
+  author: varchar("author", { length: 120 }).notNull(),
+  date: timestamp("date").notNull(),
+  location: varchar("location", { length: 200 }), // e.g., "Kiambu, Kenya"
+  updateType: varchar("update_type", { length: 50 }), // "field-note", "research-update", "announcement", "blog"
+  tags: text("tags"), // JSON array
+  images: text("images"), // JSON array of image URLs
+  relatedTheme: integer("related_theme"), // FK to research_themes
+  relatedPublication: integer("related_publication"), // FK to working_papers
+  featured: boolean("featured").default(false),
+  published: boolean("published").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   lastUpdated: timestamp("last_updated").defaultNow(),
 });

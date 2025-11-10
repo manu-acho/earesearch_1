@@ -1,29 +1,92 @@
-import { notFound } from "next/navigation";
-import { getAllDatasets, getDatasetBySlug } from "@/lib/content";
-import { getMDXComponent } from "next-contentlayer2/hooks";
-import { mdxComponents } from "@/components/mdx-components";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Download, FileText, Code, ArrowLeft, Database, Users, Calendar } from "lucide-react";
 
-export async function generateStaticParams() {
-  const datasets = getAllDatasets();
-  return datasets.map((dataset) => ({
-    slug: dataset.slug,
-  }));
+interface Dataset {
+  id: number;
+  name: string;
+  slug: string;
+  summary: string;
+  description: string | null;
+  size: string | null;
+  format: string | null;
+  license: string;
+  version: string | null;
+  downloadUrl: string | null;
+  documentationUrl: string | null;
+  doi: string | null;
+  languages: string[];
+  domains: string[];
+  tags: string[];
+  stats: Record<string, any> | null;
+  citation: string | null;
+  relatedPaper: number | null;
+  featured: boolean;
+  createdAt: string;
+  lastUpdated: string;
 }
 
-export default async function DatasetPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const dataset = getDatasetBySlug(slug);
+export default function DatasetPage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  
+  const [dataset, setDataset] = useState<Dataset | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!dataset) {
-    notFound();
+  useEffect(() => {
+    fetch(`/api/datasets`)
+      .then((res) => res.json())
+      .then((data) => {
+        const datasets = Array.isArray(data) ? data : [];
+        const foundDataset = datasets.find((d: Dataset) => d.slug === slug);
+        setDataset(foundDataset || null);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching dataset:", error);
+        setLoading(false);
+      });
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
-  const MDXContent = getMDXComponent(dataset.body.code);
+  if (!dataset) {
+    return (
+      <main className="min-h-screen py-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="p-12 text-center">
+            <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <h1 className="text-2xl font-bold mb-2">Dataset Not Found</h1>
+            <p className="text-muted-foreground mb-6">
+              The dataset you're looking for doesn't exist.
+            </p>
+            <Link href="/datasets">
+              <Button>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Datasets
+              </Button>
+            </Link>
+          </Card>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen py-20">
@@ -53,11 +116,11 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
                   {lang}
                 </Badge>
               ))}
-              {dataset.domain && (
-                <Badge variant="outline">
-                  {dataset.domain}
+              {dataset.domains?.map((domain) => (
+                <Badge key={domain} variant="outline">
+                  {domain}
                 </Badge>
-              )}
+              ))}
             </div>
 
             {/* Metadata Cards */}
@@ -144,10 +207,37 @@ export default async function DatasetPage({ params }: { params: Promise<{ slug: 
             </Card>
           )}
 
-          {/* Full Content */}
-          <article className="prose prose-lg max-w-none">
-            <MDXContent components={mdxComponents} />
-          </article>
+          {/* Full Description */}
+          {dataset.description && (
+            <article className="prose prose-lg max-w-none mb-12">
+              <div dangerouslySetInnerHTML={{ __html: dataset.description }} />
+            </article>
+          )}
+
+          {/* Statistics */}
+          {dataset.stats && (
+            <Card className="p-6 mb-12">
+              <h2 className="text-2xl font-bold mb-4">Dataset Statistics</h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {Object.entries(dataset.stats).map(([key, value]) => (
+                  <div key={key} className="flex justify-between items-center p-3 bg-muted/30 rounded">
+                    <span className="font-medium capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                    <span className="text-muted-foreground">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          )}
+
+          {/* Citation */}
+          {dataset.citation && (
+            <Card className="p-6">
+              <h2 className="text-2xl font-bold mb-4">Citation</h2>
+              <pre className="bg-muted p-4 rounded overflow-x-auto text-sm">
+                {dataset.citation}
+              </pre>
+            </Card>
+          )}
         </div>
       </div>
     </main>

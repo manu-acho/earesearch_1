@@ -1,34 +1,96 @@
-import { notFound } from "next/navigation";
-import { getAllPrototypes, getPrototypeBySlug } from "@/lib/content";
-import { getMDXComponent } from "next-contentlayer2/hooks";
-import { mdxComponents } from "@/components/mdx-components";
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { ExternalLink, Code, ArrowLeft, Layers, CheckCircle2 } from "lucide-react";
+import { ExternalLink, Code, ArrowLeft, Layers, CheckCircle2, FileText } from "lucide-react";
 
-export async function generateStaticParams() {
-  const prototypes = getAllPrototypes();
-  return prototypes.map((prototype) => ({
-    slug: prototype.slug,
-  }));
+interface Prototype {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  fullDescription: string | null;
+  status: string;
+  demoUrl: string | null;
+  repoUrl: string | null;
+  externalUrl: string | null;
+  stack: string[];
+  useCases: string[];
+  tags: string[];
+  screenshots: string[];
+  videoUrl: string | null;
+  relatedPaper: number | null;
+  relatedDataset: number | null;
+  featured: boolean;
+  createdAt: string;
+  lastUpdated: string;
 }
 
-export default async function PrototypePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const prototype = getPrototypeBySlug(slug);
+export default function PrototypePage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  
+  const [prototype, setPrototype] = useState<Prototype | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!prototype) {
-    notFound();
+  useEffect(() => {
+    fetch(`/api/prototypes`)
+      .then((res) => res.json())
+      .then((data) => {
+        const prototypes = Array.isArray(data) ? data : [];
+        const foundPrototype = prototypes.find((p: Prototype) => p.slug === slug);
+        setPrototype(foundPrototype || null);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching prototype:", error);
+        setLoading(false);
+      });
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        </div>
+      </main>
+    );
   }
 
-  const MDXContent = getMDXComponent(prototype.body.code);
+  if (!prototype) {
+    return (
+      <main className="min-h-screen py-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="p-12 text-center">
+            <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <h1 className="text-2xl font-bold mb-2">Prototype Not Found</h1>
+            <p className="text-muted-foreground mb-6">
+              The prototype you're looking for doesn't exist.
+            </p>
+            <Link href="/prototypes">
+              <Button>
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Prototypes
+              </Button>
+            </Link>
+          </Card>
+        </div>
+      </main>
+    );
+  }
 
-  const statusColors = {
+  const statusColors: Record<string, string> = {
     prototype: "bg-yellow-500/10 text-yellow-700 border-yellow-500/20",
     pilot: "bg-blue-500/10 text-blue-700 border-blue-500/20",
     production: "bg-green-500/10 text-green-700 border-green-500/20",
+    archived: "bg-gray-500/10 text-gray-700 border-gray-500/20",
   };
 
   return (
@@ -46,7 +108,7 @@ export default async function PrototypePage({ params }: { params: Promise<{ slug
           {/* Header */}
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-4">
-              <Badge className={statusColors[prototype.status]}>
+              <Badge className={statusColors[prototype.status] || statusColors.prototype}>
                 {prototype.status.toUpperCase()}
               </Badge>
             </div>
@@ -115,10 +177,12 @@ export default async function PrototypePage({ params }: { params: Promise<{ slug
             </Card>
           )}
 
-          {/* Full Content */}
-          <article className="prose prose-lg max-w-none">
-            <MDXContent components={mdxComponents} />
-          </article>
+          {/* Full Description */}
+          {prototype.fullDescription && (
+            <article className="prose prose-lg max-w-none">
+              <div dangerouslySetInnerHTML={{ __html: prototype.fullDescription }} />
+            </article>
+          )}
         </div>
       </div>
     </main>
