@@ -5,13 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell, Shield } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -154,15 +156,28 @@ export function Navigation() {
               })}
             </div>
 
-            {/* CTA Button - Desktop */}
-            <Button 
-              variant="default" 
-              size="sm" 
-              className="hidden lg:flex glossy-blue glossy-blue-hover shadow-md hover:shadow-lg transition-shadow"
-              asChild
-            >
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
+            {/* CTA Buttons - Desktop */}
+            <div className="hidden lg:flex items-center gap-3">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="flex items-center gap-2"
+                asChild
+              >
+                <Link href="/admin">
+                  <Shield className="w-4 h-4" />
+                  {session ? "Admin" : "Login"}
+                </Link>
+              </Button>
+              <Button 
+                variant="default" 
+                size="sm" 
+                className="glossy-blue glossy-blue-hover shadow-md hover:shadow-lg transition-shadow"
+                asChild
+              >
+                <Link href="/contact">Get in Touch</Link>
+              </Button>
+            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -242,13 +257,26 @@ export function Navigation() {
           })}
 
           {/* Mobile CTA */}
-          <Button 
-            className="w-full glossy-blue glossy-blue-hover shadow-lg" 
-            size="lg"
-            asChild
-          >
-            <Link href="/contact">Get in Touch</Link>
-          </Button>
+          <div className="space-y-3">
+            <Button 
+              variant="outline"
+              className="w-full flex items-center justify-center gap-2" 
+              size="lg"
+              asChild
+            >
+              <Link href="/admin">
+                <Shield className="w-4 h-4" />
+                {session ? "Admin Dashboard" : "Admin Login"}
+              </Link>
+            </Button>
+            <Button 
+              className="w-full glossy-blue glossy-blue-hover shadow-lg" 
+              size="lg"
+              asChild
+            >
+              <Link href="/contact">Get in Touch</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </>
