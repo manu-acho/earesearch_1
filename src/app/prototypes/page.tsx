@@ -71,20 +71,46 @@ export default function PrototypesPage() {
     <main className="min-h-screen py-20">
       <div className="container mx-auto px-4">
         {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+        <div className="text-center max-w-4xl mx-auto mb-12">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Prototypes
           </h1>
-          <p className="text-xl text-muted-foreground mb-6">
-            Experimental systems and tools for equitable digital agriculture. 
+          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+            Experimental systems and tools for equitable socio-technical designs. 
             These prototypes demonstrate practical applications of our research.
           </p>
-          <Button className="glossy-blue glossy-blue-hover" asChild>
-            <Link href="/admin/prototypes/new">
-              <Plus className="w-4 h-4 mr-2" />
-              Add Prototype
-            </Link>
-          </Button>
+
+          {/* Partnership Badge */}
+          <div className="flex items-center justify-center gap-4 py-6 border-y border-muted/30">
+            <img 
+              src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+              alt="E.A Research" 
+              className="h-12 w-12 mix-blend-multiply dark:mix-blend-screen"
+            />
+            <span className="text-2xl text-muted-foreground/50">×</span>
+            <a
+              href="https://addisassistant.com/en/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <img 
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                alt="Addis AI" 
+                className="h-12 w-12"
+              />
+            </a>
+          </div>
+
+          {/* Add Button */}
+          <div className="mt-6">
+            <Button className="glossy-blue glossy-blue-hover" asChild>
+              <Link href="/admin/prototypes/new">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Prototype
+              </Link>
+            </Button>
+          </div>
         </div>
 
         {/* Search and Filters */}

@@ -74,16 +74,15 @@ export function Navigation() {
             {/* Logo */}
             <Link 
               href="/" 
-              className="flex items-center gap-2 font-bold text-xl text-primary hover:scale-105 transition-transform duration-200 z-50"
+              className="flex items-center hover:scale-105 transition-transform duration-200 z-50 ml-2"
             >
               <Image
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm"
                 alt="E.A Research"
-                width={32}
-                height={32}
-                className="w-8 h-8 mix-blend-multiply dark:mix-blend-screen"
+                width={48}
+                height={48}
+                className="w-12 h-12 mix-blend-multiply dark:mix-blend-screen"
               />
-              E.A Research
             </Link>
 
             {/* Desktop Navigation */}

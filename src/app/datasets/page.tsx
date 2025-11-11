@@ -50,22 +50,42 @@ export default function DatasetsPage() {
     <main className="min-h-screen py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground">
+          <div className="text-center mb-12 max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
               Datasets
             </h1>
-            <Button className="glossy-blue glossy-blue-hover" asChild>
-              <Link href="/admin/datasets/new">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Dataset
-              </Link>
-            </Button>
+            
+            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Provided by Addis AI, access open datasets for advancing equitable socio-technical systems. 
+              All datasets are freely available to support researchers and developers working on African language technologies.
+            </p>
+
+            {/* Partnership Badge */}
+            <div className="flex items-center justify-center gap-3 py-6 border-y border-muted/30">
+              <a
+                href="https://addisassistant.com/en/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 transition-transform duration-200"
+              >
+                <img 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                  alt="Addis AI" 
+                  className="h-16 w-16"
+                />
+              </a>
+            </div>
+
+            {/* Add Button */}
+            <div className="mt-6">
+              <Button className="glossy-blue glossy-blue-hover" asChild>
+                <Link href="/admin/datasets/new">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Dataset
+                </Link>
+              </Button>
+            </div>
           </div>
-          
-          <p className="text-xl text-muted-foreground mb-8">
-            Open datasets for advancing equitable digital agriculture research. 
-            All datasets are freely available to support researchers and developers working on African language technologies.
-          </p>
 
           <div className="mb-8">
             <div className="relative">

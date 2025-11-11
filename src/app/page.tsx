@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Lightbulb, Database, Code, BookOpen, Users, Globe, Sparkles } from "lucide-react";
+import { ArrowRight, Lightbulb, Database, Code, BookOpen, Users, Globe, Sparkles, Handshake } from "lucide-react";
 
 export default function Home() {
   const researchAreas = [
@@ -65,6 +65,13 @@ export default function Home() {
 
         <div className="container relative mx-auto px-4 py-24 md:py-32 lg:py-40">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Partnership Text Above Card */}
+            <div className="mb-4 animate-fade-in">
+              <p className="text-base md:text-lg font-medium text-muted-foreground">
+                E.A Research <span className="text-primary">◇</span> Addis AI
+              </p>
+            </div>
+            
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full text-sm font-medium text-primary shadow-sm animate-slide-in-down">
               <Sparkles className="w-4 h-4" />
               Research • Innovation • Impact
@@ -87,20 +94,19 @@ export default function Home() {
               </Button>
             </div>
 
-            {/* Partnership Badge */}
+            {/* Partnership Badge - Bottom */}
             <div className="mt-12 pt-8 border-t border-muted/30 animate-fade-in" style={{ animationDelay: "600ms" }}>
-              <p className="text-sm text-muted-foreground mb-4">Research Collaboration</p>
-              <div className="flex items-center justify-center gap-8">
+              <div className="flex items-center justify-center gap-4">
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
                   alt="E.A Research" 
-                  className="h-16 w-16 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200 mix-blend-multiply dark:mix-blend-screen"
+                  className="h-14 w-14 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200 mix-blend-multiply dark:mix-blend-screen"
                 />
-                <span className="text-3xl text-muted-foreground/50">×</span>
+                <Handshake className="w-6 h-6 text-primary opacity-70" />
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
                   alt="Addis AI" 
-                  className="h-16 w-16 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
+                  className="h-14 w-14 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
                 />
               </div>
             </div>
@@ -335,7 +341,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10" asChild>
+              <Button size="lg" className="border-2 border-white bg-transparent text-white hover:bg-white/20 hover:text-white" asChild>
                 <Link href="/updates">Latest Updates</Link>
               </Button>
             </div>
