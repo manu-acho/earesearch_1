@@ -10,8 +10,9 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   
-  // Don't protect the login page
-  if (pathname === "/admin/login") {
+  // Don't protect public admin pages
+  const publicPages = ["/admin/login", "/admin/request-access"];
+  if (publicPages.includes(pathname)) {
     return <>{children}</>;
   }
   

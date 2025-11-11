@@ -77,7 +77,7 @@ export default function Home() {
               Research • Innovation • Impact
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-in-left animation-delay-200">
-              Building Farmer Agency in Digital Markets
+              Building Underserved Agency in Digital Markets
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed animate-slide-in-left" style={{ animationDelay: "200ms" }}>
               We research, develop, and implement socio-technical systems that combine voice-first interfaces, data governance, and field practice, empowering farmers as agents in digital markets.
@@ -188,8 +188,8 @@ export default function Home() {
                   <p className="text-muted-foreground mb-4 leading-relaxed">
                     {feature.description}
                   </p>
-                  <Button variant="ghost" size="sm" className="group-hover:text-primary" asChild>
-                    <Link href={feature.link}>
+                  <Button variant="ghost" size="sm" className="group-hover:text-primary hover:bg-primary/5" asChild>
+                    <Link href={feature.link} className="no-underline">
                       Learn more
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
@@ -217,8 +217,8 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Explore our research papers, literature reviews, and social media content advancing equitable digital systems.
                 </p>
-                <Button className="glossy-blue glossy-blue-hover w-full" asChild>
-                  <Link href="/publications">
+                <Button className="glossy-blue glossy-blue-hover w-full text-white" asChild>
+                  <Link href="/publications" className="text-white">
                     Browse Publications
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -236,8 +236,8 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Access open datasets and corpora supporting African language technologies and agricultural research.
                 </p>
-                <Button className="glossy-blue glossy-blue-hover w-full" asChild>
-                  <Link href="/datasets">
+                <Button className="glossy-blue glossy-blue-hover w-full text-white" asChild>
+                  <Link href="/datasets" className="text-white">
                     Explore Datasets
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -255,8 +255,8 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   View working prototypes and pilot deployments bringing research into practice with real communities.
                 </p>
-                <Button className="glossy-blue glossy-blue-hover w-full" asChild>
-                  <Link href="/prototypes">
+                <Button className="glossy-blue glossy-blue-hover w-full text-white" asChild>
+                  <Link href="/prototypes" className="text-white">
                     View Prototypes
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -274,8 +274,8 @@ export default function Home() {
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Learn about our collaborations with organizations advancing AI and digital agriculture in Africa.
                 </p>
-                <Button className="glossy-blue glossy-blue-hover w-full" asChild>
-                  <Link href="/partners">
+                <Button className="glossy-blue glossy-blue-hover w-full text-white" asChild>
+                  <Link href="/partners" className="text-white">
                     Meet Our Partners
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>

@@ -29,36 +29,38 @@ export function DatasetCard({ dataset }: DatasetCardProps) {
   const url = `/datasets/${dataset.slug}`;
   
   return (
-    <Card className="h-full flex flex-col hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
-      <CardHeader>
+    <Card className="h-full flex flex-col group hover:-translate-y-2 border-l-4 border-l-blue-500">
+      <CardHeader className="space-y-3">
         <div className="flex items-start justify-between gap-4">
-          <CardTitle className="text-xl">
-            <Link href={url} className="hover:text-primary transition-colors">
+          <CardTitle className="text-xl font-bold">
+            <Link href={url} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors group-hover:underline decoration-2 underline-offset-4">
               {dataset.name}
             </Link>
           </CardTitle>
           {dataset.license && (
-            <Badge variant="outline">{dataset.license}</Badge>
+            <Badge variant="outline" className="bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 font-medium">
+              {dataset.license}
+            </Badge>
           )}
         </div>
-        <CardDescription>
+        <CardDescription className="text-sm font-medium text-gray-600 dark:text-gray-400">
           {dataset.version && `v${dataset.version}`}
           {dataset.size && ` · ${dataset.size}`}
           {dataset.format && ` · ${dataset.format}`}
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex-1">
-        <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+      <CardContent className="flex-1 space-y-4">
+        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed line-clamp-3">
           {dataset.summary}
         </p>
         <div className="flex flex-wrap gap-2">
           {dataset.languages?.map((lang) => (
-            <Badge key={lang} variant="secondary" className="text-xs">
+            <Badge key={lang} variant="secondary" className="text-xs font-semibold bg-gradient-to-r from-blue-100 to-blue-50 dark:from-blue-950 dark:to-blue-900 text-blue-700 dark:text-blue-300 border-0">
               {lang}
             </Badge>
           ))}
           {dataset.domains?.map((domain) => (
-            <Badge key={domain} variant="outline" className="text-xs">
+            <Badge key={domain} variant="outline" className="text-xs font-medium bg-white dark:bg-gray-900 border-gray-300 dark:border-gray-700">
               {domain}
             </Badge>
           ))}

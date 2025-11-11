@@ -7,9 +7,10 @@ export async function middleware(req: NextRequest) {
   
   console.log("🔒 Middleware called for:", pathname);
   
-  // Allow access to login page
-  if (pathname === "/admin/login") {
-    console.log("✅ Allowing access to login page");
+  // Allow access to public admin pages
+  const publicAdminPages = ["/admin/login", "/admin/request-access"];
+  if (publicAdminPages.includes(pathname)) {
+    console.log("✅ Allowing access to public admin page");
     return NextResponse.next();
   }
   

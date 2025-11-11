@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -113,6 +114,18 @@ export default function AdminLoginPage() {
             >
               {loading ? "Signing in..." : "Sign In"}
             </Button>
+
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Don't have an account?{" "}
+                <Link
+                  href="/admin/request-access"
+                  className="text-blue-600 hover:underline font-medium"
+                >
+                  Request Access
+                </Link>
+              </p>
+            </div>
           </form>
 
           <div className="mt-6 text-center">

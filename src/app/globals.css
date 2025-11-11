@@ -68,6 +68,13 @@
   @apply outline-none ring-2 ring-ring ring-offset-2;
 }
 
+/* Prevent visited link color change in buttons */
+button a:visited,
+button:visited,
+.no-underline:visited {
+  color: inherit !important;
+}
+
 /* KaTeX styles */
 .katex-display {
   @apply my-4 overflow-x-auto;
@@ -75,7 +82,8 @@
 
 /* Glossy blue design */
 .glossy-blue {
-  background: hsl(217, 91%, 52%);
+  background: hsl(217, 91%, 52%) !important;
+  color: white !important;
   position: relative;
   overflow: hidden;
 }
@@ -98,6 +106,13 @@
 .glossy-blue-hover:hover {
   filter: brightness(1.1);
   box-shadow: 0 8px 25px rgba(99, 179, 237, 0.35);
+  color: white !important;
+}
+
+.glossy-blue:active,
+.glossy-blue:focus,
+.glossy-blue:visited {
+  color: white !important;
 }
 
 /* Smooth animations */

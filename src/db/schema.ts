@@ -199,8 +199,22 @@ export const adminUsers = pgTable("admin_users", {
   email: varchar("email", { length: 255 }).notNull().unique(),
   passwordHash: varchar("password_hash", { length: 255 }).notNull(),
   name: varchar("name", { length: 255 }),
-  role: varchar("role", { length: 50 }).default("admin"), // "admin", "editor", "viewer" for future
+  role: varchar("role", { length: 50 }).default("pending"), // "super_admin", "admin", "pending"
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   lastLogin: timestamp("last_login"),
+});
+
+// Admin access requests from prospective users
+export const adminAccessRequests = pgTable("admin_access_requests", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  email: varchar("email", { length: 255 }).notNull(),
+  organization: varchar("organization", { length: 255 }),
+  reason: text("reason").notNull(),
+  status: varchar("status", { length: 50 }).default("pending"), // "pending", "approved", "rejected"
+  reviewedBy: integer("reviewed_by"), // admin_users.id
+  reviewedAt: timestamp("reviewed_at"),
+  reviewNotes: text("review_notes"),
+  createdAt: timestamp("created_at").defaultNow(),
 });

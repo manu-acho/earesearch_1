@@ -12,6 +12,7 @@ import {
   Newspaper,
   LogOut,
   User,
+  Users,
   Settings
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ import { Card } from "@/components/ui/card";
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false);
   const [stats, setStats] = useState({
     publications: 0,
     datasets: 0,
@@ -33,6 +35,22 @@ export default function AdminDashboard() {
       router.push("/admin/login");
     }
   }, [status, router]);
+
+  // Check if user is super admin
+  useEffect(() => {
+    const checkSuperAdmin = async () => {
+      try {
+        const response = await fetch("/api/admin/users");
+        setIsSuperAdmin(response.ok && response.status !== 403);
+      } catch {
+        setIsSuperAdmin(false);
+      }
+    };
+
+    if (session) {
+      checkSuperAdmin();
+    }
+  }, [session]);
 
   if (status === "loading") {
     return (
@@ -115,6 +133,15 @@ export default function AdminDashboard() {
               <Button
                 variant="outline"
                 size="sm"
+                onClick={() => router.push("/admin/change-password")}
+                className="flex items-center gap-2"
+              >
+                <Settings className="w-4 h-4" />
+                Change Password
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => signOut({ callbackUrl: "/admin/login" })}
                 className="flex items-center gap-2"
               >
@@ -170,6 +197,40 @@ export default function AdminDashboard() {
             );
           })}
         </div>
+
+        {/* Super Admin Section */}
+        {isSuperAdmin && (
+          <Card className="p-6 mt-8 border-purple-200 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 dark:text-white">
+                  Super Admin Controls
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Manage users, roles, and permissions
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <Button
+                onClick={() => router.push("/admin/users")}
+                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+              >
+                <Users className="w-4 h-4 mr-2" />
+                Manage Users
+              </Button>
+              <Button
+                onClick={() => router.push("/admin/access-requests")}
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white"
+              >
+                View Access Requests
+              </Button>
+            </div>
+          </Card>
+        )}
 
         {/* Quick Actions */}
         <Card className="p-6 mt-8">
