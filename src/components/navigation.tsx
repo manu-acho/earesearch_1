@@ -81,9 +81,9 @@ export function Navigation() {
               <Image
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq"
                 alt="E.A Research"
-                width={48}
-                height={48}
-                className="w-12 h-12 mix-blend-multiply dark:mix-blend-screen"
+                width={80}
+                height={80}
+                className="h-14 w-14 md:h-16 md:w-16 lg:h-20 lg:w-20 mix-blend-multiply dark:mix-blend-screen"
               />
             </Link>
 

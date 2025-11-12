@@ -33,13 +33,13 @@ export function Footer() {
               <img 
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
                 alt="E.A Research" 
-                className="h-12 w-12 mix-blend-multiply dark:mix-blend-screen"
+                className="h-14 w-14 md:h-16 md:w-16 mix-blend-multiply dark:mix-blend-screen"
               />
-              <Handshake className="w-5 h-5 text-primary" />
+              <Handshake className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               <img 
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
                 alt="Addis AI" 
-                className="h-12 w-12"
+                className="h-14 w-14 md:h-16 md:w-16"
               />
             </div>
             <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">

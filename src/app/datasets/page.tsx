@@ -71,7 +71,7 @@ export default function DatasetsPage() {
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
                   alt="Addis AI" 
-                  className="h-16 w-16"
+                  className="h-20 w-20 md:h-24 md:w-24"
                 />
               </a>
             </div>

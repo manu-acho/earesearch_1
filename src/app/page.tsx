@@ -167,17 +167,17 @@ export default function Home() {
 
             {/* Partnership Badge - Bottom */}
             <div className="mt-12 pt-8 border-t border-muted/30 animate-fade-in" style={{ animationDelay: "600ms" }}>
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-4 md:gap-6">
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
                   alt="E.A Research" 
-                  className="h-14 w-14 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200 mix-blend-multiply dark:mix-blend-screen"
+                  className="h-20 w-20 md:h-28 md:w-28 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200 mix-blend-multiply dark:mix-blend-screen"
                 />
-                <Handshake className="w-6 h-6 text-primary opacity-70" />
+                <Handshake className="w-7 h-7 md:w-8 md:h-8 text-primary opacity-70" />
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
                   alt="Addis AI" 
-                  className="h-14 w-14 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
+                  className="h-20 w-20 md:h-28 md:w-28 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
                 />
               </div>
             </div>

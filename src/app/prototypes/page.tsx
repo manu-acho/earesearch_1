@@ -81,13 +81,13 @@ export default function PrototypesPage() {
           </p>
 
           {/* Partnership Badge */}
-          <div className="flex items-center justify-center gap-4 py-6 border-y border-muted/30">
+          <div className="flex items-center justify-center gap-4 md:gap-6 py-6 border-y border-muted/30">
             <img 
               src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
               alt="E.A Research" 
-              className="h-12 w-12 mix-blend-multiply dark:mix-blend-screen"
+              className="h-16 w-16 md:h-20 md:w-20 mix-blend-multiply dark:mix-blend-screen"
             />
-            <span className="text-2xl text-muted-foreground/50">×</span>
+            <span className="text-2xl md:text-3xl text-muted-foreground/50">×</span>
             <a
               href="https://addisassistant.com/en/"
               target="_blank"
@@ -97,7 +97,7 @@ export default function PrototypesPage() {
               <img 
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
                 alt="Addis AI" 
-                className="h-12 w-12"
+                className="h-16 w-16 md:h-20 md:w-20"
               />
             </a>
           </div>

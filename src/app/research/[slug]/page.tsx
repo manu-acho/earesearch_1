@@ -394,7 +394,7 @@ export default function ResearchThemeDetailPage() {
                       <img 
                         src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4"
                         alt="Addis AI"
-                        className="w-8 h-8 rounded-full object-cover mt-0.5"
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover mt-0.5"
                       />
                     ) : (
                       <Users className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
