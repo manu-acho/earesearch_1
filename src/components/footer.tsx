@@ -36,11 +36,18 @@ export function Footer() {
                 className="h-14 w-14 md:h-16 md:w-16"
               />
               <Handshake className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-              <img 
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
-                alt="Addis AI" 
-                className="h-14 w-14 md:h-16 md:w-16"
-              />
+              <a
+                href="https://addisassistant.com/en/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 transition-transform duration-200"
+              >
+                <img 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                  alt="Addis AI" 
+                  className="h-14 w-14 md:h-16 md:w-16"
+                />
+              </a>
             </div>
             <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">
               Building equitable digital systems for agricultural trade through voice-first technologies, blockchain infrastructure, and field research in Sub Saharan Africa.

@@ -86,13 +86,20 @@ export function Navigation() {
                 className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
               />
               <Handshake className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
-              <Image
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4"
-                alt="Addis AI"
-                width={64}
-                height={64}
-                className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
-              />
+              <a
+                href="https://addisassistant.com/en/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-110 transition-transform duration-200"
+              >
+                <Image
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4"
+                  alt="Addis AI"
+                  width={64}
+                  height={64}
+                  className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
+                />
+              </a>
             </Link>
 
             {/* Desktop Navigation */}

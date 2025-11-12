@@ -174,11 +174,18 @@ export default function Home() {
                   className="h-20 w-20 md:h-28 md:w-28 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
                 />
                 <Handshake className="w-7 h-7 md:w-8 md:h-8 text-primary opacity-70" />
-                <img 
-                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
-                  alt="Addis AI" 
-                  className="h-20 w-20 md:h-28 md:w-28 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
-                />
+                <a
+                  href="https://addisassistant.com/en/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <img 
+                    src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                    alt="Addis AI" 
+                    className="h-20 w-20 md:h-28 md:w-28 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
+                  />
+                </a>
               </div>
             </div>
           </div>
@@ -408,11 +415,18 @@ export default function Home() {
               </div>
               <div className="text-4xl text-muted-foreground">+</div>
               <div className="text-center">
-                <img 
-                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
-                  alt="Addis AI" 
-                  className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
-                />
+                <a
+                  href="https://addisassistant.com/en/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <img 
+                    src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                    alt="Addis AI" 
+                    className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
+                  />
+                </a>
                 <p className="text-sm font-medium text-muted-foreground">Addis AI</p>
               </div>
             </div>
