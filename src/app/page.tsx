@@ -98,7 +98,7 @@ export default function Home() {
             <div className="mt-12 pt-8 border-t border-muted/30 animate-fade-in" style={{ animationDelay: "600ms" }}>
               <div className="flex items-center justify-center gap-4">
                 <img 
-                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
                   alt="E.A Research" 
                   className="h-14 w-14 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200 mix-blend-multiply dark:mix-blend-screen"
                 />
@@ -294,7 +294,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8">
               <div className="text-center">
                 <img 
-                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
                   alt="E.A Research" 
                   className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity mix-blend-multiply dark:mix-blend-screen"
                 />

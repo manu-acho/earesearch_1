@@ -83,7 +83,7 @@ export default function PrototypesPage() {
           {/* Partnership Badge */}
           <div className="flex items-center justify-center gap-4 py-6 border-y border-muted/30">
             <img 
-              src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
+              src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
               alt="E.A Research" 
               className="h-12 w-12 mix-blend-multiply dark:mix-blend-screen"
             />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Github, Linkedin, Twitter, ExternalLink } from "lucide-react";
+import { Mail, Github, Linkedin, Twitter, ExternalLink, Handshake } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,15 +29,25 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="font-bold text-2xl text-primary mb-4 inline-block hover:scale-105 transition-transform">
-              E.A Research
-            </Link>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
+                alt="E.A Research" 
+                className="h-12 w-12 mix-blend-multiply dark:mix-blend-screen"
+              />
+              <Handshake className="w-5 h-5 text-primary" />
+              <img 
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
+                alt="Addis AI" 
+                className="h-12 w-12"
+              />
+            </div>
             <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">
               Building equitable digital systems for agricultural trade through voice-first technologies, blockchain infrastructure, and field research in Sub Saharan Africa.
             </p>
             <div className="flex gap-3">
               <a
-                href="mailto:contact@earesearch.org"
+                href="mailto:emmanuel@earesearch.net"
                 className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
                 aria-label="Email"
               >
@@ -53,7 +63,7 @@ export function Footer() {
                 <Github className="w-4 h-4" />
               </a>
               <a
-                href="https://linkedin.com/company/earesearch"
+                href="https://www.linkedin.com/in/manu-acho/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
@@ -62,7 +72,7 @@ export function Footer() {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com/earesearch"
+                href="https://x.com/Manu_AchoRS"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
@@ -122,26 +132,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-
-        {/* Partnership Logos */}
-        <div className="py-6 border-t border-border/40">
-          <div className="flex flex-col items-center gap-4">
-            <p className="text-xs text-muted-foreground uppercase tracking-wide">Research Collaboration</p>
-            <div className="flex items-center gap-6">
-              <img 
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm" 
-                alt="E.A Research" 
-                className="h-8 w-8 opacity-70 hover:opacity-100 transition-opacity mix-blend-multiply dark:mix-blend-screen"
-              />
-              <span className="text-muted-foreground/50">×</span>
-              <img 
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
-                alt="Addis AI" 
-                className="h-8 w-8 opacity-70 hover:opacity-100 transition-opacity"
-              />
-            </div>
           </div>
         </div>
 

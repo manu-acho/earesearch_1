@@ -79,7 +79,7 @@ export function Navigation() {
               className="flex items-center hover:scale-105 transition-transform duration-200 z-50 ml-2"
             >
               <Image
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm"
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq"
                 alt="E.A Research"
                 width={48}
                 height={48}

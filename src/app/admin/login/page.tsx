@@ -47,7 +47,7 @@ export default function AdminLoginPage() {
           {/* Logo */}
           <div className="flex justify-center mb-8">
             <Image
-              src="https://bafkreidpgpj3zo4yq6hh3d2tf7eeak7l3ivizo3eijg2r77al5u3p7ixpm.ipfs.w3s.link"
+              src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq"
               alt="E.A Research"
               width={80}
               height={80}
