@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell, Shield } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell, Shield, Handshake } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 export function Navigation() {
@@ -72,18 +72,26 @@ export function Navigation() {
         }`}
       >
         <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-between h-16">
-            {/* Logo */}
+          <nav className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+            {/* Collaboration Badge */}
             <Link 
               href="/" 
-              className="flex items-center hover:scale-105 transition-transform duration-200 z-50 ml-2"
+              className="flex items-center gap-2 md:gap-3 hover:scale-105 transition-transform duration-200 z-50"
             >
               <Image
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq"
                 alt="E.A Research"
-                width={80}
-                height={80}
-                className="h-14 w-14 md:h-16 md:w-16 lg:h-20 lg:w-20 mix-blend-multiply dark:mix-blend-screen"
+                width={64}
+                height={64}
+                className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 mix-blend-multiply dark:mix-blend-screen"
+              />
+              <Handshake className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
+              <Image
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4"
+                alt="Addis AI"
+                width={64}
+                height={64}
+                className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
               />
             </Link>
 
