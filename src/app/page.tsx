@@ -1,10 +1,40 @@
+'use client';
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Lightbulb, Database, Code, BookOpen, Users, Globe, Sparkles, Handshake } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-card-index') || '0');
+            setVisibleCards((prev) => new Set(prev).add(index));
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const cards = document.querySelectorAll('[data-card-index]');
+    cards.forEach((card) => observerRef.current?.observe(card));
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, []);
+
   const researchAreas = [
     {
       icon: Lightbulb,
@@ -72,9 +102,50 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border border-primary/20 rounded-full text-sm font-medium text-primary shadow-sm animate-slide-in-down">
-              <Sparkles className="w-4 h-4" />
-              Research • Innovation • Impact
+            {/* Horizontal Timeline Card */}
+            <div className="inline-block mb-6 animate-slide-in-down">
+              <div className="bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 rounded-2xl shadow-xl shadow-blue-500/10 px-8 py-4 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500">
+                <div className="relative flex items-center justify-center gap-8">
+                  {/* Timeline Line */}
+                  <div className="absolute top-[13px] left-[60px] right-[60px] h-0.5 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600"></div>
+                  
+                  {/* Timeline Items */}
+                  <div className="flex items-center gap-8">
+                    {/* Research */}
+                    <div className="flex flex-col items-center gap-2 relative z-10">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center ring-4 ring-white shadow-md">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-sm font-bold text-foreground whitespace-nowrap">Research</h3>
+                        <p className="text-xs text-muted-foreground whitespace-nowrap">Evidence-based</p>
+                      </div>
+                    </div>
+                    
+                    {/* Innovate */}
+                    <div className="flex flex-col items-center gap-2 relative z-10">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center ring-4 ring-white shadow-md">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-sm font-bold text-foreground whitespace-nowrap">Innovate</h3>
+                        <p className="text-xs text-muted-foreground whitespace-nowrap">Practical solutions</p>
+                      </div>
+                    </div>
+                    
+                    {/* Impact */}
+                    <div className="flex flex-col items-center gap-2 relative z-10">
+                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center ring-4 ring-white shadow-md">
+                        <Sparkles className="w-3 h-3 text-white" />
+                      </div>
+                      <div className="text-center">
+                        <h3 className="text-sm font-bold text-foreground whitespace-nowrap">Impact</h3>
+                        <p className="text-xs text-muted-foreground whitespace-nowrap">Real-world change</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-in-left animation-delay-200">
               Building Underserved Agency in Digital Markets
@@ -130,11 +201,16 @@ export default function Home() {
             <div className="grid gap-6 md:grid-cols-2">
               {researchAreas.map((area, index) => {
                 const Icon = area.icon;
+                const cardIndex = index;
+                const isVisible = visibleCards.has(cardIndex);
                 return (
                   <Card 
-                    key={area.title} 
-                    className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group animate-slide-in-up"
-                    style={{ animationDelay: `${200 + index * 100}ms` }}
+                    key={area.title}
+                    data-card-index={cardIndex}
+                    className={`p-6 bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 group ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     <div className={`w-12 h-12 rounded-lg ${area.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                       <Icon className="w-6 h-6" />
@@ -176,26 +252,33 @@ export default function Home() {
             </div>
 
             <div className="grid gap-8 md:grid-cols-3">
-              {features.map((feature, index) => (
-                <Card 
-                  key={feature.title}
-                  className="p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group animate-slide-in-up"
-                  style={{ animationDelay: `${200 + index * 150}ms` }}
-                >
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {feature.description}
-                  </p>
-                  <Button variant="ghost" size="sm" className="group-hover:text-primary hover:bg-primary/5" asChild>
-                    <Link href={feature.link} className="no-underline">
-                      Learn more
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                </Card>
-              ))}
+              {features.map((feature, index) => {
+                const cardIndex = 4 + index; // Offset by research areas cards
+                const isVisible = visibleCards.has(cardIndex);
+                return (
+                  <Card 
+                    key={feature.title}
+                    data-card-index={cardIndex}
+                    className={`p-6 text-center bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 group ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {feature.description}
+                    </p>
+                    <Button variant="ghost" size="sm" className="group-hover:text-primary hover:bg-primary/5" asChild>
+                      <Link href={feature.link} className="no-underline">
+                        Learn more
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -207,9 +290,14 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="grid gap-8 md:grid-cols-2">
               {/* Publications */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-blue-50/50 to-white animate-slide-in-left">
+              <Card 
+                data-card-index={7}
+                className={`p-8 bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 group ${
+                  visibleCards.has(7) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+              >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-100 to-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                     <BookOpen className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold">Publications</h3>
@@ -226,9 +314,15 @@ export default function Home() {
               </Card>
 
               {/* Datasets */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-green-50/50 to-white animate-slide-in-right" style={{ animationDelay: "100ms" }}>
+              <Card 
+                data-card-index={8}
+                className={`p-8 bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 group ${
+                  visibleCards.has(8) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: "100ms" }}
+              >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-100 to-green-50 text-green-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                     <Database className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold">Datasets</h3>
@@ -245,9 +339,15 @@ export default function Home() {
               </Card>
 
               {/* Prototypes */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-purple-50/50 to-white animate-slide-in-left" style={{ animationDelay: "200ms" }}>
+              <Card 
+                data-card-index={9}
+                className={`p-8 bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 group ${
+                  visibleCards.has(9) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: "200ms" }}
+              >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                     <Code className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold">Prototypes</h3>
@@ -264,9 +364,15 @@ export default function Home() {
               </Card>
 
               {/* Partners */}
-              <Card className="p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 group bg-gradient-to-br from-orange-50/50 to-white animate-slide-in-right" style={{ animationDelay: "300ms" }}>
+              <Card 
+                data-card-index={10}
+                className={`p-8 bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 shadow-xl shadow-blue-500/10 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-500 group ${
+                  visibleCards.has(10) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: "300ms" }}
+              >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-100 to-orange-50 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
                     <Users className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold">Partners</h3>
