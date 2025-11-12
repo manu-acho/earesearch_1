@@ -31,9 +31,9 @@ export function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img 
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq" 
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i" 
                 alt="E.A Research" 
-                className="h-14 w-14 md:h-16 md:w-16 mix-blend-multiply dark:mix-blend-screen"
+                className="h-14 w-14 md:h-16 md:w-16"
               />
               <Handshake className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               <img 

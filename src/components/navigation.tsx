@@ -79,11 +79,11 @@ export function Navigation() {
               className="flex items-center gap-2 md:gap-3 hover:scale-105 transition-transform duration-200 z-50"
             >
               <Image
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreibes6atbml5ilznklqhmn4qbq5esocq3x2gxekrtp2mvhmhidnprq"
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i"
                 alt="E.A Research"
                 width={64}
                 height={64}
-                className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 mix-blend-multiply dark:mix-blend-screen"
+                className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
               />
               <Handshake className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
               <Image
