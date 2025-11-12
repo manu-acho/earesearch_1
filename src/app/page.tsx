@@ -93,17 +93,17 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container relative mx-auto px-4 py-24 md:py-32 lg:py-40">
+        <div className="container relative mx-auto px-4 py-16 md:py-24 lg:py-28">
           <div className="max-w-4xl mx-auto text-center">
             {/* Partnership Text Above Card */}
-            <div className="mb-4 animate-fade-in">
+            <div className="mb-3 animate-fade-in">
               <p className="text-base md:text-lg font-medium text-muted-foreground">
                 E.A Research <span className="text-primary">◇</span> Addis AI
               </p>
             </div>
             
             {/* Horizontal Timeline Card */}
-            <div className="inline-block mb-6 animate-slide-in-down">
+            <div className="inline-block mb-5 animate-slide-in-down">
               <div className="bg-white/60 backdrop-blur-lg border-2 border-blue-400/40 rounded-2xl shadow-xl shadow-blue-500/10 px-8 py-4 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500">
                 <div className="relative flex items-center justify-center gap-8">
                   {/* Timeline Line */}
@@ -147,10 +147,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-in-left animation-delay-200">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5 animate-slide-in-left animation-delay-200">
               Building Underserved Agency in Digital Markets
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed animate-slide-in-left" style={{ animationDelay: "200ms" }}>
+            <p className="text-lg md:text-xl text-muted-foreground mb-7 max-w-3xl mx-auto leading-relaxed animate-slide-in-left" style={{ animationDelay: "200ms" }}>
               We research, develop, and implement socio-technical systems that combine voice-first interfaces, data governance, and field practice, empowering farmers as agents in digital markets.
             </p>
             <div className="flex flex-wrap gap-4 justify-center animate-slide-in-up" style={{ animationDelay: "400ms" }}>
@@ -166,7 +166,7 @@ export default function Home() {
             </div>
 
             {/* Partnership Badge - Bottom */}
-            <div className="mt-12 pt-8 border-t border-muted/30 animate-fade-in" style={{ animationDelay: "600ms" }}>
+            <div className="mt-10 pt-6 border-t border-muted/30 animate-fade-in" style={{ animationDelay: "600ms" }}>
               <div className="flex items-center justify-center gap-4 md:gap-6">
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i" 

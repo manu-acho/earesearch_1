@@ -74,17 +74,19 @@ export function Navigation() {
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-16 md:h-20 lg:h-24">
             {/* Collaboration Badge */}
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 md:gap-3 hover:scale-105 transition-transform duration-200 z-50"
-            >
-              <Image
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i"
-                alt="E.A Research"
-                width={64}
-                height={64}
-                className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
-              />
+            <div className="flex items-center gap-2 md:gap-3 z-50">
+              <Link 
+                href="/"
+                className="hover:scale-105 transition-transform duration-200"
+              >
+                <Image
+                  src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i"
+                  alt="E.A Research"
+                  width={64}
+                  height={64}
+                  className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
+                />
+              </Link>
               <Handshake className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
               <a
                 href="https://addisassistant.com/en/"
@@ -100,7 +102,7 @@ export function Navigation() {
                   className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
                 />
               </a>
-            </Link>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-6 flex-1 justify-center mx-8">
