@@ -29,11 +29,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <img 
-                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i" 
-                alt="E.A Research" 
-                className="h-14 w-14 md:h-16 md:w-16"
+                        <div className="flex items-center gap-3 md:gap-4 mb-3">
+              <img
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafybeighh6omrl4r64z5wfjfbmcctfxglaty662zrxhpiaubdjnogkdjm4" 
+                alt="E.A Research"
+                className="h-14 w-14 md:h-16 md:w-16 opacity-90 hover:opacity-100 transition-opacity"
               />
               <Handshake className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               <a

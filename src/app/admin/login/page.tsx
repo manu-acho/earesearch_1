@@ -45,13 +45,14 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
           {/* Logo */}
-          <div className="flex justify-center mb-8">
-            <Image
-              src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreiggwkjiwzuv5prwdunqrncdjbnwtykpcvftqzzdzh7kjmrhzlpl3i"
-              alt="E.A Research"
-              width={80}
-              height={80}
-            />
+          <div className="text-center mb-8">
+            <div className="mb-4">
+              <img
+                src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafybeighh6omrl4r64z5wfjfbmcctfxglaty662zrxhpiaubdjnogkdjm4"
+                alt="E.A Research"
+                className="h-28 w-28 mx-auto opacity-90"
+              />
+            </div>
           </div>
 
           <h1 className="text-2xl font-bold text-center mb-2 text-gray-900 dark:text-white">
