@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell, Shield, Handshake } from "lucide-react";
+import { Menu, X, ChevronDown, FileText, Database, Code, Users, Bell, Shield, Minus } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 export function Navigation() {
@@ -82,14 +82,14 @@ export function Navigation() {
                 <Image
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafybeighh6omrl4r64z5wfjfbmcctfxglaty662zrxhpiaubdjnogkdjm4"
                   alt="E.A Research"
-                  width={64}
-                  height={64}
-                  className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
+                  width={72}
+                  height={72}
+                  className="h-14 w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
                 />
               </Link>
-              <Handshake className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
+              <Minus className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
               <a
-                href="https://addisassistant.com/en/"
+                href="https://platform.addisassistant.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition-transform duration-200"

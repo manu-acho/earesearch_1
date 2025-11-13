@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Lightbulb, Database, Code, BookOpen, Users, Globe, Sparkles, Handshake } from "lucide-react";
+import { ArrowRight, Lightbulb, Database, Code, BookOpen, Users, Globe, Sparkles, Minus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
@@ -173,9 +173,9 @@ export default function Home() {
                   alt="E.A Research" 
                   className="h-24 w-24 md:h-32 md:w-32 opacity-80 hover:opacity-100 transition-opacity hover:scale-105 duration-200"
                 />
-                <Handshake className="w-7 h-7 md:w-8 md:h-8 text-primary opacity-70" />
+                <Minus className="w-7 h-7 md:w-8 md:h-8 text-primary opacity-70" />
                 <a
-                  href="https://addisassistant.com/en/"
+                  href="https://platform.addisassistant.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"
@@ -404,19 +404,19 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-8">Research Collaboration</h2>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8">
+            <div className="flex flex-col md:flex-row items-end justify-center gap-8 md:gap-16 mb-8">
               <div className="text-center">
                 <img 
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafybeighh6omrl4r64z5wfjfbmcctfxglaty662zrxhpiaubdjnogkdjm4" 
                   alt="E.A Research" 
-                  className="h-24 w-24 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
+                  className="h-20 w-20 mx-auto mb-3 opacity-90 hover:opacity-100 transition-opacity"
                 />
                 <p className="text-sm font-medium text-muted-foreground">E.A Research</p>
               </div>
-              <div className="text-4xl text-muted-foreground">+</div>
+              <div className="text-4xl text-muted-foreground mb-5">—</div>
               <div className="text-center">
                 <a
-                  href="https://addisassistant.com/en/"
+                  href="https://platform.addisassistant.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block"

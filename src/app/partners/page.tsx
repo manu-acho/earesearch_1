@@ -62,7 +62,7 @@ export default function PartnersPage() {
 
                   <div>
                     <Button variant="default" className="glossy-blue glossy-blue-hover" asChild>
-                      <a href="https://addisassistant.com/en/" target="_blank" rel="noopener noreferrer">
+                      <a href="https://platform.addisassistant.com" target="_blank" rel="noopener noreferrer">
                         Visit Addis AI
                         <ExternalLink className="w-4 h-4 ml-2" />
                       </a>

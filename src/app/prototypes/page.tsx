@@ -87,9 +87,9 @@ export default function PrototypesPage() {
               alt="E.A Research" 
               className="h-18 w-18 md:h-22 md:w-22"
             />
-            <span className="text-2xl md:text-3xl text-muted-foreground/50">×</span>
+            <span className="text-2xl md:text-3xl text-muted-foreground/50">—</span>
             <a
-              href="https://addisassistant.com/en/"
+              href="https://platform.addisassistant.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:scale-110 transition-transform duration-200"

@@ -63,7 +63,7 @@ export default function DatasetsPage() {
             {/* Partnership Badge */}
             <div className="flex items-center justify-center gap-3 py-6 border-y border-muted/30">
               <a
-                href="https://addisassistant.com/en/"
+                href="https://platform.addisassistant.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition-transform duration-200"

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Linkedin, Twitter, ExternalLink, Handshake } from "lucide-react";
+import { Mail, Linkedin, Twitter, ExternalLink, Minus } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,9 +35,9 @@ export function Footer() {
                 alt="E.A Research"
                 className="h-14 w-14 md:h-16 md:w-16 opacity-90 hover:opacity-100 transition-opacity"
               />
-              <Handshake className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+              <Minus className="w-5 h-5 md:w-6 md:h-6 text-primary" />
               <a
-                href="https://addisassistant.com/en/"
+                href="https://platform.addisassistant.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition-transform duration-200"
@@ -147,7 +147,7 @@ export function Footer() {
                 Terms
               </Link>
               <a
-                href="https://addisassistant.com/en/"
+                href="https://platform.addisassistant.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors flex items-center gap-1"
