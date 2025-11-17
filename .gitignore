@@ -43,5 +43,8 @@ next-env.d.ts
 # drizzle
 drizzle/
 
-# local scripts (do not commit development/run scripts)
+# scripts with sensitive data
 scripts/
+
+# netlify
+.netlify/

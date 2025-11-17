@@ -102,7 +102,7 @@ Contact form submissions will email to emmanuel@earesearch.net
 
 ## 🔐 Admin Access
 
-Admin forms are currently unprotected. Add authentication before production:
+Admin forms are currently unprotected. Need to add authentication before production:
 
 ### Option 1: Simple Password Middleware
 Create `src/middleware.ts`:
