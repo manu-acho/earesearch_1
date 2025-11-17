@@ -85,9 +85,9 @@ export default function PrototypesPage() {
             <img 
               src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafybeighh6omrl4r64z5wfjfbmcctfxglaty662zrxhpiaubdjnogkdjm4" 
               alt="E.A Research" 
-              className="h-18 w-18 md:h-22 md:w-22"
+              className="h-12 w-12 md:h-16 md:w-16 opacity-80 hover:opacity-100 transition-opacity"
             />
-            <span className="text-2xl md:text-3xl text-muted-foreground/50">—</span>
+            <span className="text-xl md:text-2xl text-muted-foreground/50">—</span>
             <a
               href="https://platform.addisassistant.com"
               target="_blank"
@@ -97,7 +97,7 @@ export default function PrototypesPage() {
               <img 
                 src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4" 
                 alt="Addis AI" 
-                className="h-16 w-16 md:h-20 md:w-20"
+                className="h-10 w-10 md:h-14 md:w-14 opacity-80 hover:opacity-100 transition-opacity"
               />
             </a>
           </div>
