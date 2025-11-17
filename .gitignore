@@ -28,6 +28,7 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.env.*
 
 # vercel
 .vercel
@@ -42,5 +43,5 @@ next-env.d.ts
 # drizzle
 drizzle/
 
-# Local Netlify folder
-.netlify
+# local scripts (do not commit development/run scripts)
+scripts/
