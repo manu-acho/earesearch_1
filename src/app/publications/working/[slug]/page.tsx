@@ -7,32 +7,54 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FileText, Download, ArrowLeft, Calendar, Users, Tag } from "lucide-react";
 
+// Use dynamic rendering - don't try to generate static params at build time
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
-  const papers = await db.select().from(workingPapers);
-  return papers.map((paper: typeof workingPapers.$inferSelect) => ({
-    slug: paper.slug,
-  }));
+  // Skip static generation if DB is not available
+  if (!db) {
+    return [];
+  }
+  
+  try {
+    const papers = await db.select().from(workingPapers);
+    return papers.map((paper: typeof workingPapers.$inferSelect) => ({
+      slug: paper.slug,
+    }));
+  } catch (error) {
+    console.warn("Could not generate static params for working papers:", error);
+    return [];
+  }
 }
 
 async function getWorkingPaper(slug: string) {
-  const papers = await db
-    .select()
-    .from(workingPapers)
-    .where(eq(workingPapers.slug, slug))
-    .limit(1);
-
-  if (papers.length === 0) {
+  if (!db) {
     return null;
   }
+  
+  try {
+    const papers = await db
+      .select()
+      .from(workingPapers)
+      .where(eq(workingPapers.slug, slug))
+      .limit(1);
 
-  const paper = papers[0];
-  return {
-    ...paper,
-    authors: paper.authors ? JSON.parse(paper.authors) : [],
-    coAuthors: paper.coAuthors ? JSON.parse(paper.coAuthors) : [],
-    tags: paper.tags ? JSON.parse(paper.tags) : [],
-    keywords: paper.keywords ? JSON.parse(paper.keywords) : [],
-  };
+    if (papers.length === 0) {
+      return null;
+    }
+
+    const paper = papers[0];
+    return {
+      ...paper,
+      authors: paper.authors ? JSON.parse(paper.authors) : [],
+      coAuthors: paper.coAuthors ? JSON.parse(paper.coAuthors) : [],
+      tags: paper.tags ? JSON.parse(paper.tags) : [],
+      keywords: paper.keywords ? JSON.parse(paper.keywords) : [],
+    };
+  } catch (error) {
+    console.error("Error fetching working paper:", error);
+    return null;
+  }
 }
 
 export default async function WorkingPaperPage({ params }: { params: Promise<{ slug: string }> }) {
