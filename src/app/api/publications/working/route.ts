@@ -2,19 +2,26 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { workingPapers } from "@/db/schema";
 import { desc, like, or } from "drizzle-orm";
+import { isAdmin } from "@/lib/auth-utils";
 
 // GET: Fetch all working papers with optional filters
 export async function GET(request: NextRequest) {
   try {
+    console.log("=== Working Papers API Called ===");
+    console.log("DB instance:", db ? "exists" : "null");
+    
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("q");
     const status = searchParams.get("status");
     const researchArea = searchParams.get("researchArea");
 
+    console.log("Attempting to query database...");
     let papers = await db
       .select()
       .from(workingPapers)
       .orderBy(desc(workingPapers.lastUpdated));
+    
+    console.log("Papers fetched:", papers.length);
 
     // Apply filters
     if (query) {
@@ -44,9 +51,13 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(parsedPapers, { status: 200 });
   } catch (error) {
-    console.error("Error fetching working papers:", error);
+    console.error("=== ERROR fetching working papers ===");
+    console.error("Error type:", error instanceof Error ? error.constructor.name : typeof error);
+    console.error("Error message:", error instanceof Error ? error.message : String(error));
+    console.error("Full error:", error);
+    console.error("Stack trace:", error instanceof Error ? error.stack : "No stack trace");
     return NextResponse.json(
-      { error: "Failed to fetch working papers" },
+      { error: "Failed to fetch working papers", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
@@ -54,6 +65,15 @@ export async function GET(request: NextRequest) {
 
 // POST: Add new working paper
 export async function POST(request: NextRequest) {
+  // Check authentication
+  const hasAccess = await isAdmin();
+  if (!hasAccess) {
+    return NextResponse.json(
+      { error: "Unauthorized. Admin access required." },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
     const {

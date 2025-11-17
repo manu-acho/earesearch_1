@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { externalPapers } from "@/db/schema";
 import { desc, like, or } from "drizzle-orm";
+import { isAdmin } from "@/lib/auth-utils";
 
 // GET: Fetch all external papers with optional search/filter
 export async function GET(request: NextRequest) {
@@ -57,6 +58,15 @@ export async function GET(request: NextRequest) {
 
 // POST: Add new external paper
 export async function POST(request: NextRequest) {
+  // Check authentication
+  const hasAccess = await isAdmin();
+  if (!hasAccess) {
+    return NextResponse.json(
+      { error: "Unauthorized. Admin access required." },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
     const {

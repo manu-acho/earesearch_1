@@ -8,7 +8,7 @@ let dbInstance: ReturnType<typeof drizzle> | null = null;
 
 function getPool() {
   if (!pool) {
-    const dbUrl = process.env.NETLIFY_DATABASE_URL || process.env.DATABASE_URL;
+    const dbUrl = process.env.DATABASE_URL;
     if (!dbUrl) {
       // Return a mock pool for build time
       console.warn("DATABASE_URL not set - database operations will fail");

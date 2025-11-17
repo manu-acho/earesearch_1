@@ -13,10 +13,18 @@ import {
   LogOut,
   User,
   Users,
-  Settings
+  Settings,
+  List,
+  Plus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
@@ -69,44 +77,80 @@ export default function AdminDashboard() {
       title: "Publications",
       icon: FileText,
       count: stats.publications,
-      links: [
-        { label: "External Papers (Library)", href: "/admin/publications/library/new" },
-        { label: "Working Papers", href: "/admin/publications/working/new" },
-        { label: "Literature Reviews", href: "/admin/publications/reviews/new" },
-        { label: "Research Artifacts", href: "/admin/publications/artifacts/new" },
-        { label: "Social Posts", href: "/admin/publications/social/new" },
+      subcategories: [
+        {
+          name: "External Papers (Library)",
+          manage: "/admin/publications/library",
+          add: "/admin/publications/library/new",
+        },
+        {
+          name: "Working Papers",
+          manage: "/admin/publications/working",
+          add: "/admin/publications/working/new",
+        },
+        {
+          name: "Literature Reviews",
+          manage: "/admin/publications/reviews",
+          add: "/admin/publications/reviews/new",
+        },
+        {
+          name: "Research Artifacts",
+          manage: "/admin/publications/artifacts",
+          add: "/admin/publications/artifacts/new",
+        },
+        {
+          name: "Social Posts",
+          manage: "/admin/publications/social",
+          add: "/admin/publications/social/new",
+        },
       ],
     },
     {
       title: "Datasets",
       icon: Database,
       count: stats.datasets,
-      links: [
-        { label: "Add New Dataset", href: "/admin/datasets/new" },
+      subcategories: [
+        {
+          name: "Datasets",
+          manage: "/admin/datasets",
+          add: "/admin/datasets/new",
+        },
       ],
     },
     {
       title: "Prototypes",
       icon: Code,
       count: stats.prototypes,
-      links: [
-        { label: "Add New Prototype", href: "/admin/prototypes/new" },
+      subcategories: [
+        {
+          name: "Prototypes",
+          manage: "/admin/prototypes",
+          add: "/admin/prototypes/new",
+        },
       ],
     },
     {
-      title: "Research Themes",
+      title: "Research Projects",
       icon: Lightbulb,
       count: stats.researchThemes,
-      links: [
-        { label: "Add New Theme", href: "/admin/research-themes/new" },
+      subcategories: [
+        {
+          name: "Research Projects",
+          manage: "/admin/research-themes",
+          add: "/admin/research-themes/new",
+        },
       ],
     },
     {
       title: "Updates",
       icon: Newspaper,
       count: stats.updates,
-      links: [
-        { label: "Add New Update", href: "/admin/updates/new" },
+      subcategories: [
+        {
+          name: "Updates & Field Notes",
+          manage: "/admin/updates",
+          add: "/admin/updates/new",
+        },
       ],
     },
   ];
@@ -165,38 +209,59 @@ export default function AdminDashboard() {
           </p>
         </Card>
 
-        {/* Content Sections Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {contentSections.map((section) => {
-            const Icon = section.icon;
-            return (
-              <Card key={section.title} className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
-                    <Icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-white">
-                      {section.title}
-                    </h3>
-                    {/* <p className="text-sm text-gray-500">{section.count} items</p> */}
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  {section.links.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </Card>
-            );
-          })}
-        </div>
+        {/* Content Sections */}
+        <Card className="p-6">
+          <Accordion type="multiple" className="w-full" defaultValue={["publications", "research-projects"]}>
+            {contentSections.map((section) => {
+              const Icon = section.icon;
+              return (
+                <AccordionItem key={section.title} value={section.title.toLowerCase().replace(/\s+/g, '-')}>
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                        <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div className="text-left">
+                        <h3 className="font-semibold text-gray-900 dark:text-white">
+                          {section.title}
+                        </h3>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-4 pl-14 pr-4 pt-2">
+                      {section.subcategories.map((subcat) => (
+                        <div key={subcat.name} className="flex items-center justify-between border-l-2 border-blue-200 pl-4 py-2">
+                          <span className="font-medium text-gray-700 dark:text-gray-300">
+                            {subcat.name}
+                          </span>
+                          <div className="flex gap-2">
+                            {'manage' in subcat && subcat.manage && (
+                              <Button size="sm" variant="outline" asChild>
+                                <Link href={subcat.manage}>
+                                  <List className="w-3 h-3 mr-1" />
+                                  Manage
+                                </Link>
+                              </Button>
+                            )}
+                            {subcat.add && (
+                              <Button size="sm" className="glossy-blue glossy-blue-hover" asChild>
+                                <Link href={subcat.add}>
+                                  <Plus className="w-3 h-3 mr-1" />
+                                  Add New
+                                </Link>
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        </Card>
 
         {/* Super Admin Section */}
         {isSuperAdmin && (

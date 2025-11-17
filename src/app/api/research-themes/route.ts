@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { researchProjects } from "@/db/schema";
 import { desc, eq, like, or } from "drizzle-orm";
+import { isAdmin } from "@/lib/auth-utils";
 
 export async function GET(request: NextRequest) {
   try {
@@ -55,7 +56,11 @@ export async function GET(request: NextRequest) {
       teamMembers: project.teamMembers ? JSON.parse(project.teamMembers) : [],
     }));
 
-    return NextResponse.json(projectsWithParsedJson);
+    return NextResponse.json(projectsWithParsedJson, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate',
+      },
+    });
   } catch (error) {
     console.error("Error fetching research projects:", error);
     return NextResponse.json(
@@ -66,6 +71,15 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  // Check authentication
+  const hasAccess = await isAdmin();
+  if (!hasAccess) {
+    return NextResponse.json(
+      { error: "Unauthorized. Admin access required." },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
 

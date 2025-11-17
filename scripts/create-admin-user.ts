@@ -5,8 +5,8 @@ import bcrypt from "bcryptjs";
 async function createAdminUser() {
   try {
     const email = "emmanuel@earesearch.net";
-    const password = "Addisai25!";
-    const name = "Emmanuel";
+    const password = "Password123!";
+    const name = "Emmanuel Acho";
 
     // Hash the password with bcrypt (10 salt rounds)
     const passwordHash = await bcrypt.hash(password, 10);
@@ -18,7 +18,7 @@ async function createAdminUser() {
         email,
         passwordHash,
         name,
-        role: "admin",
+        role: "super_admin",
         isActive: true,
       })
       .returning();

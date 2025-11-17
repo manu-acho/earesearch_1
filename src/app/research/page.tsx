@@ -242,19 +242,11 @@ export default function ResearchPage() {
 
         {/* Active Research Projects */}
         <section className="mb-20">
-          <div className="mb-12 animate-slide-in-left flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Active Research Projects</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl">
-                Explore our ongoing research initiatives with transparent progress tracking, research questions, and milestone roadmaps.
-              </p>
-            </div>
-            <Link href="/admin/research-themes/new">
-              <Button className="flex-shrink-0">
-                <FileText className="w-4 h-4 mr-2" />
-                Add Research Project
-              </Button>
-            </Link>
+          <div className="mb-12 animate-slide-in-left">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Active Research Projects</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl">
+              Explore our ongoing research initiatives with transparent progress tracking, research questions, and milestone roadmaps.
+            </p>
           </div>
 
           {loading ? (

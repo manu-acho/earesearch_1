@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/client";
 import { socialPosts } from "@/db/schema";
 import { desc } from "drizzle-orm";
+import { isAdmin } from "@/lib/auth-utils";
 
 // GET: Fetch all social posts with optional filters
 export async function GET(request: NextRequest) {
@@ -51,6 +52,15 @@ export async function GET(request: NextRequest) {
 
 // POST: Add new social post
 export async function POST(request: NextRequest) {
+  // Check authentication
+  const hasAccess = await isAdmin();
+  if (!hasAccess) {
+    return NextResponse.json(
+      { error: "Unauthorized. Admin access required." },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await request.json();
     const {
