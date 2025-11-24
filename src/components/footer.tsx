@@ -24,7 +24,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-border/40 bg-muted/30 mt-20">
+    <footer className="border-t border-border/40 bg-black ">
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Column */}
@@ -35,7 +35,7 @@ export function Footer() {
                 alt="E.A Research"
                 className="h-14 w-14 md:h-16 md:w-16 opacity-90 hover:opacity-100 transition-opacity"
               />
-              <Minus className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+              <Minus className="w-5 h-5 md:w-6 md:h-6 text-foreground" />
               <a
                 href="https://platform.addisassistant.com"
                 target="_blank"
@@ -49,13 +49,13 @@ export function Footer() {
                 />
               </a>
             </div>
-            <p className="text-muted-foreground mb-4 max-w-sm leading-relaxed">
+            <p className="text-white mb-4 max-w-sm leading-relaxed">
               Building equitable digital systems for agricultural trade through voice-first technologies, blockchain infrastructure, and field research in Sub Saharan Africa.
             </p>
             <div className="flex gap-3">
               <a
                 href="mailto:emmanuel@earesearch.net"
-                className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-white flex items-center justify-center transition-colors"
                 aria-label="Email"
               >
                 <Mail className="w-4 h-4" />
@@ -64,7 +64,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/manu-acho/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-white flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-4 h-4" />
@@ -73,7 +73,7 @@ export function Footer() {
                 href="https://x.com/Manu_AchoRS"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-colors"
+                className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 text-white flex items-center justify-center transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
@@ -89,7 +89,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm text-white hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -106,7 +106,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm text-white hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -123,7 +123,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    className="text-sm text-white hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -139,7 +139,7 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               © {currentYear} E.A Research. All rights reserved.
             </p>
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-6 text-sm text-white">
               <Link href="/privacy" className="hover:text-primary transition-colors">
                 Privacy
               </Link>
