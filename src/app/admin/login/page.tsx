@@ -41,9 +41,9 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4">
+    <div className="min-h-screen  flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+        <div className="bg-card/50 dark:bg-gray-800 rounded-lg shadow-lg p-8">
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="mb-4">
@@ -55,10 +55,10 @@ export default function AdminLoginPage() {
             </div>
           </div>
 
-          <h1 className="text-2xl font-bold text-center mb-2 text-gray-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-center mb-2 ">
             Admin Login
           </h1>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
+          <p className="text-center mb-8">
             E.A Research Content Management
           </p>
 
@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium mb-2"
               >
                 Email
               </label>
@@ -85,7 +85,7 @@ export default function AdminLoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-sm font-medium mb-2"
               >
                 Password
               </label>

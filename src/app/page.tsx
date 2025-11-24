@@ -283,16 +283,14 @@ export default function Home() {
                   <Card 
                     key={area.title}
                     data-card-index={7 + index}
-                    className={`group relative p-8 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-border/50 backdrop-blur-sm bg-card/50 animate-slide-in-right group hover:border-primary/50 overflow-hidden ${
+                    className={`group relative p-8 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-border/50 backdrop-blur-sm bg-card/50 animate-slide-in-right group hover:border-primary/50 overflow-hidden rounded-lg ${
                       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                     }`}
                     style={{ transitionDelay: `${index * 100}ms` }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 dark:from-blue-900/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
+                  > 
                     <div className="relative z-10">
                       <div className="flex items-start justify-between mb-6">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-200 to-blue-100 dark:from-blue-700/50 dark:to-blue-600/30 text-blue-600 dark:text-blue-300 flex items-center justify-center group-hover:scale-110 group-hover:from-blue-300 dark:group-hover:from-blue-600 transition-all duration-300 shadow-md">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-200/20 to-blue-100/10 text-blue-600 dark:text-blue-300 flex items-center justify-center group-hover:scale-110 group-hover:from-blue-300 dark:group-hover:from-blue-600 transition-all duration-300 shadow-md">
                           <Icon className="w-8 h-8" />
                         </div>
                         <span className="text-xs font-bold text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 px-3 py-1 rounded-full group-hover:bg-blue-200 dark:group-hover:bg-blue-800/70 transition-colors duration-300">{area.stat}</span>

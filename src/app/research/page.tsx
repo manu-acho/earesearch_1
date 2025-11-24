@@ -148,7 +148,7 @@ export default function ResearchPage() {
               return (
                 <Card 
                   key={area.title} 
-                  className="p-8 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-border/50 backdrop-blur-sm bg-card/50 animate-slide-in-right group hover:border-primary/50"
+                  className="p-8 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 border-border/50 backdrop-blur-sm bg-card/50 animate-slide-in-right group hover:border-primary/50 rounded-md"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="flex items-start gap-4 mb-4">
