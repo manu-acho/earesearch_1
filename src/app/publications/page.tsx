@@ -192,7 +192,7 @@ export default function PublicationsPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-2">External Papers Library</h2>
                   <p className="text-muted-foreground">
-                    Curated research from other authors with links to download sites
+                    Research papers from leading scholars in our field
                   </p>
                 </div>
                 <Button className="glossy-blue glossy-blue-hover" asChild>
@@ -264,7 +264,7 @@ export default function PublicationsPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Working Papers</h2>
                   <p className="text-muted-foreground">
-                    Your original research papers with version control and PDF uploads
+                    Original research papers and manuscripts in development
                   </p>
                 </div>
                 <Button className="glossy-blue glossy-blue-hover" asChild>
@@ -332,7 +332,7 @@ export default function PublicationsPage() {
                   <FileText className="w-16 h-16 mx-auto mb-4 text-muted-foreground/50" />
                   <h3 className="text-xl font-semibold mb-2">No working papers yet</h3>
                   <p className="text-muted-foreground mb-6">
-                    Upload your research papers with version control and metadata
+                    Start publishing your research papers here
                   </p>
                   <Button variant="outline" asChild>
                     <Link href="/admin/publications/working/new">
@@ -350,7 +350,7 @@ export default function PublicationsPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Literature Reviews</h2>
                   <p className="text-muted-foreground">
-                    Comprehensive reviews synthesizing research from multiple papers
+                    Critical analyses and synthesis of existing research
                   </p>
                 </div>
                 <Button className="glossy-blue glossy-blue-hover" asChild>
@@ -397,7 +397,7 @@ export default function PublicationsPage() {
                   <Lightbulb className="w-16 h-16 mx-auto mb-4 text-muted-foreground/50" />
                   <h3 className="text-xl font-semibold mb-2">No literature reviews yet</h3>
                   <p className="text-muted-foreground mb-6">
-                    Create comprehensive reviews synthesizing multiple research papers
+                    Share your analyses of the research landscape
                   </p>
                   <Button variant="outline" asChild>
                     <Link href="/admin/publications/reviews/new">
@@ -415,7 +415,7 @@ export default function PublicationsPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Social Media Posts</h2>
                   <p className="text-muted-foreground">
-                    Research insights shared on LinkedIn, Twitter, and other platforms
+                    Reflections and insights shared across social platforms
                   </p>
                 </div>
                 <Button className="glossy-blue glossy-blue-hover" asChild>
@@ -457,7 +457,7 @@ export default function PublicationsPage() {
                   <Share2 className="w-16 h-16 mx-auto mb-4 text-muted-foreground/50" />
                   <h3 className="text-xl font-semibold mb-2">No social posts yet</h3>
                   <p className="text-muted-foreground mb-6">
-                    Share your LinkedIn posts and research insights from social media
+                    Connect your social media presence with your research
                   </p>
                   <Button variant="outline" asChild>
                     <Link href="/admin/publications/social/new">
@@ -475,7 +475,7 @@ export default function PublicationsPage() {
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Research Artifacts</h2>
                   <p className="text-muted-foreground">
-                    Videos, interviews, field notes, and other research materials
+                    Multimedia materials documenting the research process
                   </p>
                 </div>
                 <Button className="glossy-blue glossy-blue-hover" asChild>
@@ -527,7 +527,7 @@ export default function PublicationsPage() {
                   <Video className="w-16 h-16 mx-auto mb-4 text-muted-foreground/50" />
                   <h3 className="text-xl font-semibold mb-2">No research artifacts yet</h3>
                   <p className="text-muted-foreground mb-6">
-                    Upload videos, interviews, field notes, and other research materials
+                    Share videos, interviews, and field documentation
                   </p>
                   <Button variant="outline" asChild>
                     <Link href="/admin/publications/artifacts/new">
