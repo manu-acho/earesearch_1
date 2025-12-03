@@ -202,7 +202,7 @@ export default function PartnersPage() {
         {/* Competitive Advantage Section */}
         <div className="max-w-4xl mx-auto mb-20">
           <h2 className="text-3xl font-bold mb-8 text-center">Why Addis AI Stands Out</h2>
-          <Card className="p-8 bg-blue-50/50 border-primary/20">
+          <Card className="p-8 bg-card/50 border border-primary/50 rounded-lg">
             <div className="space-y-4">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
@@ -257,7 +257,7 @@ export default function PartnersPage() {
 
         {/* Collaboration Section */}
         <div className="max-w-4xl mx-auto">
-          <Card className="p-8 md:p-12 bg-blue-50/30 border-primary/20">
+          <Card className="p-8 md:p-12 bg-card/30 border  border-primary/20 rounded-lg">
             <div className="text-center">
               <h2 className="text-3xl font-bold mb-4">Collaboration with E.A Research</h2>
               <p className="text-lg text-muted-foreground mb-8">

@@ -65,14 +65,14 @@ export function Navigation() {
   return (
     <>
       <header 
-        className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
-          isScrolled 
-            ? "border-border/60 bg-background/98 backdrop-blur-md shadow-sm" 
-            : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-        }`}
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? "border-b border-primary/20 bg-background/95 backdrop-blur-xl shadow-lg shadow-primary/5" 
+          : "border-b border-border/20 bg-background/80 backdrop-blur-md"
+      }`}
       >
         <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-between h-16 md:h-20 lg:h-24">
+          <nav className="flex items-center justify-between h-16">
             {/* Collaboration Badge */}
             <div className="flex items-center gap-2 md:gap-3 z-50">
               <Link 
@@ -82,9 +82,9 @@ export function Navigation() {
                 <Image
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafybeighh6omrl4r64z5wfjfbmcctfxglaty662zrxhpiaubdjnogkdjm4"
                   alt="E.A Research"
-                  width={72}
-                  height={72}
-                  className="h-14 w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
+                  width={60}
+                  height={60}
+                  // className="h-14 w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
                 />
               </Link>
               <Minus className="w-4 h-4 md:w-5 md:h-5 text-primary/60" />
@@ -97,9 +97,9 @@ export function Navigation() {
                 <Image
                   src="https://violet-rainy-toad-577.mypinata.cloud/ipfs/bafkreia5cbdyqqubj2t6lklekcds72bxzmzavkdwqrx47fegbzanxfe6d4"
                   alt="Addis AI"
-                  width={64}
-                  height={64}
-                  className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
+                  width={55}
+                  height={55}
+                  // className="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
                 />
               </a>
             </div>
@@ -299,3 +299,4 @@ export function Navigation() {
     </>
   );
 }
+
