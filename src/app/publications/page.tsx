@@ -67,6 +67,7 @@ type ResearchArtifact = {
   description: string;
   externalUrl?: string;
   youtubeId?: string;
+  gammaEmbedId?: string;
   tags?: string[];
   featured: boolean;
 };
@@ -503,6 +504,19 @@ export default function PublicationsPage() {
                           />
                         </div>
                       )}
+                      {artifact.gammaEmbedId && (
+                        <div className="aspect-video bg-muted">
+                          <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://gamma.app/embed/${artifact.gammaEmbedId}`}
+                            title={artifact.title}
+                            style={{ border: 0 }}
+                            allow="fullscreen"
+                            allowFullScreen
+                          />
+                        </div>
+                      )}
                       <div className="p-5">
                         <Badge variant="outline" className="mb-2 text-xs">
                           {artifact.type}
@@ -511,7 +525,7 @@ export default function PublicationsPage() {
                         <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
                           {artifact.description}
                         </p>
-                        {artifact.externalUrl && !artifact.youtubeId && (
+                        {artifact.externalUrl && !artifact.youtubeId && !artifact.gammaEmbedId && (
                           <Button size="sm" variant="outline" className="w-full" asChild>
                             <a href={artifact.externalUrl} target="_blank" rel="noopener noreferrer">
                               View

@@ -71,6 +71,7 @@ export async function POST(request: NextRequest) {
       fileUrl,
       externalUrl,
       youtubeId,
+      gammaEmbedId,
       metadata,
       tags,
       collectionDate,
@@ -96,6 +97,7 @@ export async function POST(request: NextRequest) {
       "dataset",
       "image",
       "audio",
+      "course",
     ];
     if (!validTypes.includes(type.toLowerCase())) {
       return NextResponse.json(
@@ -104,11 +106,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Must have either fileUrl, externalUrl, or youtubeId
-    if (!fileUrl && !externalUrl && !youtubeId) {
+    // Must have either fileUrl, externalUrl, youtubeId, or gammaEmbedId
+    if (!fileUrl && !externalUrl && !youtubeId && !gammaEmbedId) {
       return NextResponse.json(
         {
-          error: "Must provide at least one of: fileUrl, externalUrl, youtubeId",
+          error: "Must provide at least one of: fileUrl, externalUrl, youtubeId, gammaEmbedId",
         },
         { status: 400 }
       );
@@ -167,6 +169,7 @@ export async function POST(request: NextRequest) {
         fileUrl: fileUrl || null,
         externalUrl: externalUrl || null,
         youtubeId: youtubeId || null,
+        gammaEmbedId: gammaEmbedId || null,
         metadata: metadata ? JSON.stringify(metadata) : null,
         tags: tags ? JSON.stringify(tags) : null,
         collectionDate: collDate,

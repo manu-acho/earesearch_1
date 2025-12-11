@@ -1,26 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { X, Plus } from "lucide-react";
+import { X, Plus, Loader2 } from "lucide-react";
 
-export default function NewArtifactPage() {
+export default function EditArtifactPage({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const [error, setError] = useState("");
+  const [artifactId, setArtifactId] = useState<string>("");
+  
   const [formData, setFormData] = useState({
     title: "",
-    type: "video" as
-      | "interview"
-      | "video"
-      | "fieldnotes"
-      | "dataset"
-      | "image"
-      | "audio"
-      | "course",
+    type: "video" as "interview" | "video" | "fieldnotes" | "dataset" | "image" | "audio" | "course",
     description: "",
     fileUrl: "",
     externalUrl: "",
@@ -37,34 +33,72 @@ export default function NewArtifactPage() {
   const [tags, setTags] = useState<string[]>([]);
   const [tagInput, setTagInput] = useState("");
 
+  useEffect(() => {
+    const loadArtifact = async () => {
+      try {
+        const resolvedParams = await params;
+        setArtifactId(resolvedParams.id);
+        
+        const response = await fetch(`/api/publications/artifacts/${resolvedParams.id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch artifact");
+        }
+        
+        const artifact = await response.json();
+        setFormData({
+          title: artifact.title,
+          type: artifact.type,
+          description: artifact.description,
+          fileUrl: artifact.fileUrl || "",
+          externalUrl: artifact.externalUrl || "",
+          youtubeId: artifact.youtubeId || "",
+          gammaEmbedId: artifact.gammaEmbedId || "",
+          metadata: artifact.metadata ? JSON.stringify(artifact.metadata, null, 2) : "",
+          collectionDate: artifact.collectionDate ? new Date(artifact.collectionDate).toISOString().split('T')[0] : "",
+          relatedPaper: artifact.relatedPaper?.toString() || "",
+          thumbnail: artifact.thumbnail || "",
+          fileSize: artifact.fileSize?.toString() || "",
+          featured: artifact.featured || false,
+        });
+        setTags(artifact.tags || []);
+      } catch (err) {
+        setError("Failed to load artifact");
+      } finally {
+        setFetching(false);
+      }
+    };
+
+    loadArtifact();
+  }, [params]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
     try {
-      const response = await fetch("/api/publications/artifacts", {
-        method: "POST",
+      const response = await fetch(`/api/publications/artifacts/${artifactId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
           tags,
-          relatedPaper: formData.relatedPaper
-            ? parseInt(formData.relatedPaper)
-            : null,
+          relatedPaper: formData.relatedPaper ? parseInt(formData.relatedPaper) : null,
           fileSize: formData.fileSize ? parseInt(formData.fileSize) : null,
+          collectionDate: formData.collectionDate || null,
           metadata: formData.metadata || null,
         }),
       });
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || "Failed to create artifact");
+        throw new Error(data.error || "Failed to update artifact");
       }
 
       router.push("/publications?tab=artifacts");
+      router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
@@ -79,12 +113,26 @@ export default function NewArtifactPage() {
     }
   };
 
+  const removeTag = (tag: string) => {
+    setTags(tags.filter((t) => t !== tag));
+  };
+
+  if (fetching) {
+    return (
+      <div className="container py-12 max-w-3xl">
+        <div className="flex items-center justify-center py-20">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container py-12 max-w-3xl">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">Add Research Artifact</h1>
+        <h1 className="text-4xl font-bold mb-4">Edit Research Artifact</h1>
         <p className="text-muted-foreground">
-          Upload research artifacts like videos, interviews, field notes, images, or audio recordings.
+          Update research artifact details, files, and metadata.
         </p>
       </div>
 
@@ -174,7 +222,7 @@ export default function NewArtifactPage() {
         <Card className="p-6">
           <h2 className="text-xl font-semibold mb-4">File & URLs</h2>
           <p className="text-sm text-muted-foreground mb-4">
-            Provide at least one: File URL, External URL, or YouTube ID
+            Provide at least one: File URL, External URL, YouTube ID, or Gamma Embed ID
           </p>
 
           <div className="space-y-4">
@@ -225,8 +273,7 @@ export default function NewArtifactPage() {
                 maxLength={11}
               />
               <p className="text-xs text-muted-foreground mt-1">
-                11-character ID from YouTube URL (e.g., from
-                youtube.com/watch?v=<strong>dQw4w9WgXcQ</strong>)
+                11-character ID from YouTube URL (e.g., from youtube.com/watch?v=<strong>dQw4w9WgXcQ</strong>)
               </p>
             </div>
 
@@ -364,7 +411,7 @@ export default function NewArtifactPage() {
                     {tag}
                     <button
                       type="button"
-                      onClick={() => setTags(tags.filter((t) => t !== tag))}
+                      onClick={() => removeTag(tag)}
                       className="hover:text-red-500"
                     >
                       <X className="w-3 h-3" />
@@ -378,7 +425,7 @@ export default function NewArtifactPage() {
 
         <div className="flex gap-4">
           <Button type="submit" disabled={loading} className="flex-1">
-            {loading ? "Creating..." : "Create Artifact"}
+            {loading ? "Saving..." : "Save Changes"}
           </Button>
           <Button
             type="button"

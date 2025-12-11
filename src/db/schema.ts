@@ -71,11 +71,12 @@ export const socialPosts = pgTable("social_posts", {
 export const researchArtifacts = pgTable("research_artifacts", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
-  type: varchar("type", { length: 50 }).notNull(), // "interview", "video", "fieldnotes", "dataset", "image", "audio"
+  type: varchar("type", { length: 50 }).notNull(), // "interview", "video", "fieldnotes", "dataset", "image", "audio", "course"
   description: text("description").notNull(),
   fileUrl: text("file_url"), // For uploaded files
   externalUrl: text("external_url"), // For YouTube, Vimeo, etc.
   youtubeId: varchar("youtube_id", { length: 50 }), // For embedding YouTube videos
+  gammaEmbedId: varchar("gamma_embed_id", { length: 100 }), // For embedding Gamma courses
   metadata: text("metadata"), // JSON: duration, location, participants, etc.
   tags: text("tags"), // JSON string array
   collectionDate: timestamp("collection_date"),
