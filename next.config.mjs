@@ -5,6 +5,7 @@ const withContentlayer = createContentlayerPlugin();
 
 const nextConfig = {
   reactStrictMode: true,
+  turbopack: {}, // Enable Turbopack support for Next.js 16
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
