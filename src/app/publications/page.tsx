@@ -522,7 +522,7 @@ export default function PublicationsPage() {
                           {artifact.type}
                         </Badge>
                         <h4 className="font-semibold mb-2">{artifact.title}</h4>
-                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-6 whitespace-pre-line">
                           {artifact.description}
                         </p>
                         {artifact.gammaEmbedId && (
