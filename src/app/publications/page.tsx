@@ -525,6 +525,13 @@ export default function PublicationsPage() {
                         <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
                           {artifact.description}
                         </p>
+                        {artifact.gammaEmbedId && (
+                          <Button size="sm" variant="default" className="w-full" asChild>
+                            <a href={`https://gamma.app/docs/${artifact.gammaEmbedId}`} target="_blank" rel="noopener noreferrer">
+                              View Full Course
+                            </a>
+                          </Button>
+                        )}
                         {artifact.externalUrl && !artifact.youtubeId && !artifact.gammaEmbedId && (
                           <Button size="sm" variant="outline" className="w-full" asChild>
                             <a href={artifact.externalUrl} target="_blank" rel="noopener noreferrer">
