@@ -180,7 +180,7 @@ export default function PrototypePage() {
           {/* Full Description */}
           {prototype.fullDescription && (
             <article className="prose prose-lg max-w-none">
-              <div dangerouslySetInnerHTML={{ __html: prototype.fullDescription }} />
+              <div className="whitespace-pre-line">{prototype.fullDescription}</div>
             </article>
           )}
         </div>
